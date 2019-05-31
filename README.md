@@ -6,10 +6,10 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 
 * ENTER - Shows a list of keywords in the workflow and starts the workflow with a keyword
 * CMD - For addtional Actions: 
-** Copy path to Clipboard
-** Open WF Folder in Terminal (cd <path>)
-** Reveal in Finder
-** Open in ForkLift (requires ForkLift installed)
+  * Copy path to Clipboard
+  * Open WF Folder in Terminal (cd <path>)
+  * Reveal in Finder
+  * Open in ForkLift (requires ForkLift installed)
 
 ## Config
 exclude_disabled: True - ignore disabled workflow in search
