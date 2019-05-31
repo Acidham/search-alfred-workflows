@@ -12,5 +12,5 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
   * Open in ForkLift (requires ForkLift installed)
 
 ## Config
-exclude_disabled: True - ignore disabled workflow in search
-terminal_path: EMPTY opens in macOS shell or path to custom terminal
+* exclude_disabled: True - ignore disabled workflow in search
+* terminal_path: EMPTY opens in macOS shell or path to custom terminal
