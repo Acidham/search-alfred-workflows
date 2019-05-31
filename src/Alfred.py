@@ -39,11 +39,12 @@ class Items(object):
 
     def setItem(self, **kwargs):
         """Add multiple key values to define an item
-        Note: addItem needs to be called to submit a Script Filter item 
+        Note: addItem needs to be called to submit a Script Filter item
         to the Script Filter object
 
         Args:
-            kwargs (kwargs): title,subtitle,arg,valid,quicklookurl,uid,automcomplete,type
+            kwargs (kwargs): title, subtitle, arg, valid, quicklookurl, uid,
+            automcomplete, type
         """
         for key, value in kwargs.items():
             self.setKv(key, value)
@@ -52,7 +53,8 @@ class Items(object):
         """get current item definition for validation
 
         Args:
-            d_type (str, optional): defines returned object format "JSON" if it needs to be readable . Defaults to "".
+            d_type (str, optional): defines returned object format "JSON" if
+            it needs to be readable . Defaults to "".
 
         Returns:
             str: JSON represenation of an item
@@ -114,7 +116,9 @@ class Items(object):
         icon.update({"path": path})
         return icon
 
-    def addMod(self, key, arg, subtitle, valid=True, icon_path="", icon_type=""):
+    def addMod(
+        self, key, arg, subtitle, valid=True, icon_path="", icon_type=""
+    ):
         """Add a mod to an item
 
         Args:
@@ -122,7 +126,8 @@ class Items(object):
             arg (str): Value of Mod arg
             subtitle (str): Subtitle
             valid (bool, optional): Arg valid or not. Defaults to True.
-            icon_path (str, optional): Path to the icon relative to WF dir. Defaults to "".
+            icon_path (str, optional): Path to the icon relative to WF dir.
+            Defaults to "".
             icon_type (str, optional): "image"|"fileicon". Defaults to "".
 
         Raises:
@@ -146,12 +151,12 @@ class Items(object):
         self.setKv("mods", self.mods)
 
     def updateItem(self, id, key, value):
-        """Update an Alfred script filter item key with a new value      
+        """Update an Alfred script filter item key with a new value
 
         Args:
             id (int): list indes
             key (str): key which needs to be updated
-            value (str): new value 
+            value (str): new value
         """
         dict_item = self.items[id]
         kv = dict_item[key]
@@ -162,7 +167,8 @@ class Items(object):
         """generate Script Filter Output and write back to stdout
 
         Args:
-            response_type (str, optional): json or dict as output format. Defaults to 'json'.
+            response_type (str, optional): json or dict as output format.
+            Defaults to 'json'.
         """
         output = self.getItems(response_type=response_type)
         sys.stdout.write(output)
@@ -184,7 +190,6 @@ class Tools(object):
         Returns:
             (str): Env value or string if not available
         """
-        t = os.getenv(var)
         return os.getenv(var) if os.getenv(var) is not None else str()
 
     @staticmethod
@@ -208,7 +213,7 @@ class Tools(object):
         """Format float time to string
 
         Args:
-            float_time (float): Time in float 
+            float_time (float): Time in float
             format (str, optional): format string. Defaults to '%d.%m.%Y'.
 
         Returns:
@@ -240,7 +245,8 @@ class Tools(object):
         """Sort List with Tubles based on a given element in Tuple
 
         Args:
-            list_tuple (list(tuble)): Sort List with Tubles based on a given element in Tuple
+            list_tuple (list(tuble)): Sort List with Tubles based on a given
+            element in Tuple
             el (int): which element
             reverse (bool, optional): Reverse order. Defaults to True.
 
@@ -266,7 +272,7 @@ class Tools(object):
         """Joins a list of strings
 
         Arguments:
-            *args (list): List which contains strings 
+            *args (list): List which contains strings
         Returns:
             str: joined str
         """

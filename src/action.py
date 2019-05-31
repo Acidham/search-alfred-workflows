@@ -4,11 +4,11 @@ from Alfred import Items
 
 # Script Filter icon [Title,Subtitle,arg/uid/icon]
 wf_items = [
-    ['Open Workflow','Open Workflow in Alfred Preferences','open'],
-    ['Copy Clipboard','Copy Workflow path to Cliboard','clipboard'],
-    ['Open in Terminal','Open Workflow path in Terminal','terminal'],
-    ['Finder','Reveal in Finder','finder'],
-    ['Forklift','Reveal in Forkflift','forklift']
+    ['Open Workflow', 'Open Workflow in Alfred Preferences', 'open'],
+    ['Copy Clipboard', 'Copy Workflow path to Cliboard', 'clipboard'],
+    ['Open in Terminal', 'Open Workflow path in Terminal', 'terminal'],
+    ['Finder', 'Reveal in Finder', 'finder'],
+    ['Forklift', 'Reveal in Forkflift', 'forklift']
 ]
 
 wf = Items()

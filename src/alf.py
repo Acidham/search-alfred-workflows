@@ -1,8 +1,6 @@
 #!/usr/bin/python
 
 import os
-import sys
-from plistlib import readPlist
 
 from Alfred import Items, Tools
 from Workflows import Workflows
@@ -121,14 +119,14 @@ if len(matches) > 0:
             title = kitem.get('title') if kitem.get('title') else text
             kf.add_keyword_title(keyword, title)
 
-        content = (
+        content = ((
             "# %s\n"
             "\n"
             "### Description\n"
             "* %s\n"
             "\n"
             "### Keywords\n"
-            "%s") % (name, description, kf.get_keywords_md())
+            "%s") % (name, description, kf.get_keywords_md())).encode('utf-8')
         quicklook_url = create_hint_file(os.path.dirname(wf_path), content)
         keyword_text = kf.get_keywords_scriptfilter()
         valid = kf.has_keywords()
