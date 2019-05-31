@@ -165,17 +165,17 @@ class Workflows(object):
         """
         def filter_list(el):
             """Filter out meta data from worklfow info
-            
+
             Args:
-                el (iteritem): list item 
-            
+                el (iteritem): list item
+
             Returns:
                 bool: True when valid item; False when invalid item
             """
-            if ( 
-            type(el) == str and 
-            'alfred.workflow' not in el and 
-            '/' not in el
+            if (
+                type(el) == str and
+                'alfred.workflow' not in el and
+                '/' not in el
             ):
                 return True
             else:
@@ -192,4 +192,4 @@ class Workflows(object):
                 ret_list.append(t)
         # TODO: remove if _filter_list is working
         #return self._remove_meta_data(ret_list)
-        return filter(filter_list,ret_list)
+        return filter(filter_list, ret_list)
