@@ -101,8 +101,7 @@ def create_hint_file(wf_dir, content):
 
 Workflows = Workflows()
 query = Tools.getArgv(1)
-matches = Workflows.get_workflows() if query == str(
-) else Workflows.search_in_workflows(query)
+matches = Workflows.get_workflows() if query == str() else Workflows.search_in_workflows(query)
 
 clean_cache()
 alf = Items()

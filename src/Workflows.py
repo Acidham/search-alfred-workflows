@@ -127,32 +127,14 @@ class Workflows(object):
             for s in val_list:
                 if (
                     type(s) == str and
-                    re.search(r'\b' + search_term, s, re.IGNORECASE)
+                    search_term.lower() in s.lower()
                 ):
+                    #re.search(r'\b' + search_term, s, re.IGNORECASE)
                     match = True
             if match:
                 matches.append(i)
                 match = False
         return matches
-
-    # TODO: Remove fun in case _filter_list is working
-    def _remove_meta_data(self, lst):
-        """Remove file and Alfred specific Metadata
-
-        Args:
-            lst (list): List of info.plist items
-
-        Returns:
-            list: Cleaned list of items
-        """
-        for l in lst:
-            if (
-                not(l) and
-                type(l) != list and
-                (os.path.isfile(l) or l in self.INPUT_TYPES)
-            ):
-                lst.remove(l)
-        return lst
 
     def _flatten_dict(self, tdict):
         """Flatten workflow directory
@@ -187,9 +169,9 @@ class Workflows(object):
                 for h in t:
                     ret_list += self._flatten_dict(h)
             # TODO delete after debug
-            #elif type(t) != bool and t is not None:
+            # elif type(t) != bool and t is not None:
             else:
                 ret_list.append(t)
         # TODO: remove if _filter_list is working
-        #return self._remove_meta_data(ret_list)
+        # return self._remove_meta_data(ret_list)
         return filter(filter_list, ret_list)
