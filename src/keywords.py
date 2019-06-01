@@ -11,7 +11,7 @@ if keyword_list:
     for k in keyword_list:
         withspace = k.get('withspace')
         keyw = k.get('keyword')
-        keyword = keyw + ' ' if withspace else keyw
+        keyword = '{} '.format(keyw) if withspace and keyw else keyw
         title = k.get('title')
         text = k.get('text')
         if keyword:
