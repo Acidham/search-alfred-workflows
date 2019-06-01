@@ -10,7 +10,7 @@ keyword_list = wf.get_item(wpath).get('keywords')
 if keyword_list:
     for k in keyword_list:
         withspace = k.get('withspace')
-        keyw = k.get('keyword') if k.get('keyword') else ""
+        keyw = k.get('keyword')
         keyword = '{} '.format(keyw) if withspace and keyw else keyw
         title = k.get('title')
         text = k.get('text')
