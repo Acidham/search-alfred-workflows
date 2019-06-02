@@ -149,7 +149,8 @@ if len(matches) > 0:
             icon_type='image',
             valid=True
         )
-        alf.addModsToItem()
+        # TODO: Remove
+        # alf.addModsToItem()
         alf.addItem()
 else:
     alf.setItem(

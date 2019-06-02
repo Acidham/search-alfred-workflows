@@ -127,9 +127,10 @@ class Workflows(object):
             for s in val_list:
                 if (
                     type(s) == str and
-                    search_term.lower() in s.lower()
+                    #search_term.lower() in s.lower()
+                    re.search(r'\b' + search_term, s, re.IGNORECASE)
                 ):
-                    #re.search(r'\b' + search_term, s, re.IGNORECASE)
+
                     match = True
             if match:
                 matches.append(i)
@@ -168,10 +169,6 @@ class Workflows(object):
             if type(t) == list and len(t) > 0:
                 for h in t:
                     ret_list += self._flatten_dict(h)
-            # TODO delete after debug
-            # elif type(t) != bool and t is not None:
             else:
                 ret_list.append(t)
-        # TODO: remove if _filter_list is working
-        # return self._remove_meta_data(ret_list)
         return filter(filter_list, ret_list)
