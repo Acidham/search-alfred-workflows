@@ -44,7 +44,7 @@
 				<key>modifiersubtext</key>
 				<string></string>
 				<key>vitoclose</key>
-				<false/>
+				<true/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -54,7 +54,7 @@
 				<key>modifiersubtext</key>
 				<string>Choose Action....</string>
 				<key>vitoclose</key>
-				<false/>
+				<true/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -1120,7 +1120,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 		<string>terminal_path</string>
 	</array>
 	<key>version</key>
-	<string>0.6.6</string>
+	<string>0.6.7</string>
 	<key>webaddress</key>
 	<string>https://github.com/Acidham/search-alfred-workflows</string>
 </dict>

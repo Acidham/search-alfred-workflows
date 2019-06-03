@@ -137,7 +137,8 @@ if len(matches) > 0:
             title=name,
             subtitle=subtitle,
             arg=arg,
-            type="file",
+            type='file:skipcheck',
+            automcomplete=name,
             valid=valid,
             quicklookurl=quicklook_url
         )
