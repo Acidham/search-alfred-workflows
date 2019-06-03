@@ -10,7 +10,8 @@ class Workflows(object):
     # when iterating over wofklow items
     INPUT_TYPES = [
         'alfred.workflow.input.scriptfilter',
-        'alfred.workflow.input.keyword'
+        'alfred.workflow.input.keyword',
+        'alfred.workflow.input.listfilter'
     ]
 
     def __init__(self):
