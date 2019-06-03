@@ -92,7 +92,7 @@ class Workflows(object):
                     'text': text,
                     'withspace': withspace
                 })
-        if plist_info['disabled'] and self.exclude_disabled:
+        if plist_info.get('disabled') and self.exclude_disabled:
             return None
         else:
             return {'name': name, 'path': plist_path, 'description': desc, 'keywords': keyword_list}
