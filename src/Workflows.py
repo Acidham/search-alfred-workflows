@@ -72,9 +72,9 @@ class Workflows(object):
             dict: Content of info.plist
         """
         plist_info = self._get_plist_info(plist_path)
-        name = plist_info['name']
-        desc = plist_info['description']
-        item_objects = plist_info['objects']
+        name = plist_info.get('name')
+        desc = plist_info.get('description')
+        item_objects = plist_info.get('objects')
         keyword_list = list()
         for o in item_objects:
             item_type = o.get('type')
