@@ -139,7 +139,7 @@ class Workflows(object):
         return matches
 
     def _flatten_dict(self, tdict):
-        """Flatten workflow directory
+        """Flatten workflow item to list
 
         Args:
             tdict (dict): Workflow item dict
@@ -148,7 +148,7 @@ class Workflows(object):
             list: list of workflow item values
         """
         def filter_list(el):
-            """Filter out meta data from worklfow info
+            """Remove meta data from worklfow info
 
             Args:
                 el (iteritem): list item

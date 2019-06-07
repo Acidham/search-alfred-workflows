@@ -111,7 +111,8 @@ if len(matches) > 0:
         description = m.get('description') if m.get('description') else ' - '
         name = m.get('name')
         keyword_list = m.get('keywords')
-        wf_path = m.get('path')
+        info_plist_path = m.get('path')
+        wf_path = os.path.dirname(info_plist_path)
         for kitem in keyword_list:
             keyword = kitem.get('keyword')
             text = kitem.get('text') if kitem.get('text') else str()
@@ -126,14 +127,16 @@ if len(matches) > 0:
             "\n"
             "### Keywords\n"
             "%s") % (name, description, kf.get_keywords_md())).encode('utf-8')
-        quicklook_url = create_hint_file(os.path.dirname(wf_path), content)
-        icon_path = os.path.dirname(wf_path) + "/icon.png"
+        quicklook_url = create_hint_file(wf_path, content)
+        ip = wf_path + "/icon.png"
+        # use default icon in alf WF directory in case searched wf has not icon defined
+        icon_path = ip if os.path.isfile(ip) else 'icon.png'
         keyword_text = kf.get_keywords_scriptfilter()
         valid = kf.has_keywords()
         subtitle = description + \
             u', Press \u23CE to choose from Keyword(s): ' + \
             keyword_text if valid else description
-        arg = os.path.dirname(wf_path) + "|" + name
+        arg = os.path.dirname(info_plist_path) + "|" + name
         alf.setItem(
             title=name,
             subtitle=subtitle,
@@ -152,8 +155,6 @@ if len(matches) > 0:
             icon_type='image',
             valid=True
         )
-        # TODO: Remove, deprecated call
-        # alf.addModsToItem()
         alf.addItem()
 else:
     alf.setItem(
