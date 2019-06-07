@@ -127,6 +127,7 @@ if len(matches) > 0:
             "### Keywords\n"
             "%s") % (name, description, kf.get_keywords_md())).encode('utf-8')
         quicklook_url = create_hint_file(os.path.dirname(wf_path), content)
+        icon_path = os.path.dirname(wf_path) + "/icon.png"
         keyword_text = kf.get_keywords_scriptfilter()
         valid = kf.has_keywords()
         subtitle = description + \
@@ -142,6 +143,7 @@ if len(matches) > 0:
             valid=valid,
             quicklookurl=quicklook_url
         )
+        alf.setIcon(icon_path, m_type="image")
         alf.addMod(
             'cmd',
             subtitle='Choose Action...',

@@ -931,7 +931,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 		<key>124DA868-B3A5-4FD5-B10E-DAE49F82D3DF</key>
 		<dict>
 			<key>colorindex</key>
-			<integer>3</integer>
+			<integer>2</integer>
 			<key>xpos</key>
 			<integer>20</integer>
 			<key>ypos</key>
@@ -1011,7 +1011,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 		<key>8A997CBF-B390-43F9-85C0-8876B512CB6B</key>
 		<dict>
 			<key>colorindex</key>
-			<integer>3</integer>
+			<integer>2</integer>
 			<key>xpos</key>
 			<integer>465</integer>
 			<key>ypos</key>
@@ -1049,7 +1049,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 		<key>9D01F139-B2F1-484A-9B6C-68466EE79AFB</key>
 		<dict>
 			<key>colorindex</key>
-			<integer>3</integer>
+			<integer>2</integer>
 			<key>xpos</key>
 			<integer>465</integer>
 			<key>ypos</key>
@@ -1120,7 +1120,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 		<string>terminal_path</string>
 	</array>
 	<key>version</key>
-	<string>0.6.7</string>
+	<string>0.6.8</string>
 	<key>webaddress</key>
 	<string>https://github.com/Acidham/search-alfred-workflows</string>
 </dict>
