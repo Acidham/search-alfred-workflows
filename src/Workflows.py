@@ -42,7 +42,11 @@ class Workflows(object):
         Returns:
             dict: Plist in dict format
         """
-        return readPlist(plist_path)
+        try:
+            ret = readPlist(plist_path)
+        except:
+            raise ValueError
+        return ret
 
     def get_wf_directory(self):
         """returns wf partent directory
@@ -71,31 +75,34 @@ class Workflows(object):
         Returns:
             dict: Content of info.plist
         """
-        plist_info = self._get_plist_info(plist_path)
-        name = plist_info.get('name')
-        desc = plist_info.get('description')
-        item_objects = plist_info.get('objects')
-        keyword_list = list()
-        for o in item_objects:
-            item_type = o.get('type')
-            if item_type in self.INPUT_TYPES:
-                item_config = o.get('config')
-                keyword = item_config.get('keyword')
-                title = item_config.get('title')
-                text = item_config.get('text')
-                title = title if title else text
-                withspace = item_config.get('withspace')
-                keyword_list.append({
-                    'type': item_type,
-                    'keyword': keyword,
-                    'title': title,
-                    'text': text,
-                    'withspace': withspace
-                })
-        if plist_info.get('disabled') and self.exclude_disabled:
+        try:
+            plist_info = self._get_plist_info(plist_path)
+            name = plist_info.get('name')
+            desc = plist_info.get('description')
+            item_objects = plist_info.get('objects')
+            keyword_list = list()
+            for o in item_objects:
+                item_type = o.get('type')
+                if item_type in self.INPUT_TYPES:
+                    item_config = o.get('config')
+                    keyword = item_config.get('keyword')
+                    title = item_config.get('title')
+                    text = item_config.get('text')
+                    title = title if title else text
+                    withspace = item_config.get('withspace')
+                    keyword_list.append({
+                        'type': item_type,
+                        'keyword': keyword,
+                        'title': title,
+                        'text': text,
+                        'withspace': withspace
+                    })
+            if plist_info.get('disabled') and self.exclude_disabled:
+                return None
+            else:
+                return {'name': name, 'path': plist_path, 'description': desc, 'keywords': keyword_list}
+        except:
             return None
-        else:
-            return {'name': name, 'path': plist_path, 'description': desc, 'keywords': keyword_list}
 
     def _get_workflows_list(self):
         """Get list of workflows, with content
