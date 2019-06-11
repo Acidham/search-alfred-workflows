@@ -279,7 +279,14 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>on run argv	set theQuery to item 1 of argv	tell application "System Events"		keystroke space using command down		delay 0.1		keystroke theQuery	end tellend run</string>
+				<string>on run argv
+	set theQuery to item 1 of argv
+	tell application "System Events"
+		keystroke space using command down
+		delay 0.1
+		keystroke theQuery
+	end tell
+end run</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -430,6 +437,50 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>on run argv
+	set theQuery to item 1 of argv
+	tell application "Alfred 4"
+		search "?" &amp; theQuery
+	end tell
+	tell application "System Events" to key code 36
+end run</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>587395A1-C351-4946-8931-31EB74F5EE33</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{var:wf_name}</string>
+				<key>variables</key>
+				<dict/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>5A7C603B-46BD-474B-BFAD-BF7F9AFEDBC9</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>conditions</key>
 				<array>
 					<dict>
@@ -510,48 +561,6 @@
 			<string>alfred.workflow.utility.conditional</string>
 			<key>uid</key>
 			<string>F08DA5A1-5F16-44A5-BFF5-D51BEECFBA2A</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>68</integer>
-				<key>script</key>
-				<string>on run argv
-	set theQuery to item 1 of argv
-	tell application "Alfred 4"		search "?" &amp; theQuery	end tell
-	tell application "System Events" to key code 36
-end run</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>6</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>587395A1-C351-4946-8931-31EB74F5EE33</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string>{var:item2}</string>
-				<key>variables</key>
-				<dict/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>5A7C603B-46BD-474B-BFAD-BF7F9AFEDBC9</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -681,7 +690,7 @@ end run</string>
 			<key>config</key>
 			<dict>
 				<key>argument</key>
-				<string>{var:item1}</string>
+				<string>{var:plist_path}</string>
 				<key>variables</key>
 				<dict/>
 			</dict>
@@ -802,7 +811,7 @@ fi</string>
 			<key>config</key>
 			<dict>
 				<key>argument</key>
-				<string>{var:item1}</string>
+				<string>{var:plist_path}</string>
 				<key>variables</key>
 				<dict/>
 			</dict>
@@ -830,7 +839,7 @@ fi</string>
 			<key>config</key>
 			<dict>
 				<key>argument</key>
-				<string>{var:item1}</string>
+				<string>{var:plist_path}</string>
 				<key>variables</key>
 				<dict/>
 			</dict>
@@ -870,7 +879,7 @@ open -a ForkLift "$query"</string>
 			<key>config</key>
 			<dict>
 				<key>argument</key>
-				<string>{var:item1}</string>
+				<string>{var:plist_path}</string>
 				<key>variables</key>
 				<dict/>
 			</dict>
@@ -890,8 +899,8 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 ## Options
 
 * ENTER - Shows a list of keywords in the workflow and starts the workflow with a keyword
-* SHIFT - Shows a workflow description and associated keywords 
-* CMD - For addtional Actions: 
+* SHIFT - Shows a workflow description and associated keywords
+* CMD - For addtional Actions:
   * Copy path to Clipboard
   * Open WF Folder in Terminal (cd &lt;path&gt;)
   * Reveal in Finder
@@ -931,7 +940,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 		<key>241E4426-A689-4820-B949-A0BFC59150B6</key>
 		<dict>
 			<key>note</key>
-			<string>Load item1 (plist_path)</string>
+			<string>Load plist_path (item1)</string>
 			<key>xpos</key>
 			<integer>875</integer>
 			<key>ypos</key>
@@ -951,7 +960,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 		<key>5A7C603B-46BD-474B-BFAD-BF7F9AFEDBC9</key>
 		<dict>
 			<key>note</key>
-			<string>Load item2 (wf_name)</string>
+			<string>Load wf_name (item2)</string>
 			<key>xpos</key>
 			<integer>875</integer>
 			<key>ypos</key>
@@ -982,7 +991,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 		<key>8A1D4D84-64B9-48D7-947D-48631A2697C0</key>
 		<dict>
 			<key>note</key>
-			<string>Load item1 (plist_path)</string>
+			<string>Load plist_path (item1)</string>
 			<key>xpos</key>
 			<integer>875</integer>
 			<key>ypos</key>
@@ -1006,7 +1015,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>225</integer>
 			<key>ypos</key>
-			<integer>520</integer>
+			<integer>450</integer>
 		</dict>
 		<key>98B322BB-3950-407D-8BCE-71C24471C9F3</key>
 		<dict>
@@ -1045,7 +1054,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 		<key>CA1E55B1-E8F6-4F74-8A3C-C0F84C373A93</key>
 		<dict>
 			<key>note</key>
-			<string>Load item1 (plist_path)</string>
+			<string>Load plist_path (item1)</string>
 			<key>xpos</key>
 			<integer>875</integer>
 			<key>ypos</key>
@@ -1065,9 +1074,9 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 		<key>F08DA5A1-5F16-44A5-BFF5-D51BEECFBA2A</key>
 		<dict>
 			<key>xpos</key>
-			<integer>645</integer>
+			<integer>650</integer>
 			<key>ypos</key>
-			<integer>220</integer>
+			<integer>255</integer>
 		</dict>
 		<key>F6838B3B-38C0-4FA3-BD97-75A9865A287A</key>
 		<dict>
@@ -1083,7 +1092,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 		<key>FB99F2B1-4488-4028-BF89-91A9D3B28DD4</key>
 		<dict>
 			<key>note</key>
-			<string>Load item1 (plist_path)</string>
+			<string>Load plist_path (item1)</string>
 			<key>xpos</key>
 			<integer>875</integer>
 			<key>ypos</key>
