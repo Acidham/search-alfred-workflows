@@ -107,7 +107,7 @@ class Workflows(object):
                     'keywords': keyword_list
                 }
         except:
-            sys.stderr.write("Corrupt Worfklow found, path: " + plist_path)
+            sys.stderr.write("Corrupt Workflow found, path: " + plist_path)
             return None
 
     def _get_workflows_list(self):
