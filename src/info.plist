@@ -898,8 +898,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
   * Open in ForkLift (requires ForkLift installed)
 
 ## Config
-* exclude_disabled: True - ignore disabled workflow in search
-* terminal_path: EMPTY opens in macOS shell or path to custom terminal</string>
+* exclude_disabled: True - ignore disabled workflow in search</string>
 	<key>uidata</key>
 	<dict>
 		<key>08A82670-9DF2-4DDD-844F-115438000923</key>
@@ -1108,7 +1107,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>0.7.4</string>
+	<string>0.7.5</string>
 	<key>webaddress</key>
 	<string>https://github.com/Acidham/search-alfred-workflows</string>
 </dict>
