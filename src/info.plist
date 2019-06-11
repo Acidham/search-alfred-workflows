@@ -1102,15 +1102,11 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 	<dict>
 		<key>exclude_disabled</key>
 		<string>true</string>
-		<key>terminal_path</key>
-		<string></string>
 	</dict>
 	<key>variablesdontexport</key>
-	<array>
-		<string>terminal_path</string>
-	</array>
+	<array/>
 	<key>version</key>
-	<string>0.7.2</string>
+	<string>0.7.3</string>
 	<key>webaddress</key>
 	<string>https://github.com/Acidham/search-alfred-workflows</string>
 </dict>
