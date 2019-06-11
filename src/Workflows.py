@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 from plistlib import readPlist
 
 from Alfred import Tools
@@ -43,10 +44,9 @@ class Workflows(object):
             dict: Plist in dict format
         """
         try:
-            ret = readPlist(plist_path)
+            return readPlist(plist_path)
         except:
             raise ValueError
-        return ret
 
     def get_wf_directory(self):
         """returns wf partent directory
@@ -100,8 +100,14 @@ class Workflows(object):
             if plist_info.get('disabled') and self.exclude_disabled:
                 return None
             else:
-                return {'name': name, 'path': plist_path, 'description': desc, 'keywords': keyword_list}
+                return {
+                    'name': name,
+                    'path': plist_path,
+                    'description': desc,
+                    'keywords': keyword_list
+                }
         except:
+            sys.stderr.write("Corrupt Worfklow found, path: " + plist_path)
             return None
 
     def _get_workflows_list(self):

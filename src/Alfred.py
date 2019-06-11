@@ -50,7 +50,7 @@ class Items(object):
             self.setKv(key, value)
 
     def getItem(self, d_type=""):
-        """get current item definition for validation
+        """Get current item definition for validation
 
         Args:
             d_type (str, optional): defines returned object format "JSON" if it needs to be readable . Defaults to "".
@@ -64,7 +64,7 @@ class Items(object):
             return json.dumps(self.item, indent=4)
 
     def getItems(self, response_type="json"):
-        """get the final items data for which represents
+        """Get the final items data for which represents
         the script filter output
 
         Args:
@@ -163,7 +163,7 @@ class Items(object):
         self.items[id] = dict_item
 
     def write(self, response_type='json'):
-        """generate Script Filter Output and write back to stdout
+        """Generate Script Filter Output and write back to stdout
 
         Args:
             response_type (str, optional): json or dict as output format. Defaults to 'json'.

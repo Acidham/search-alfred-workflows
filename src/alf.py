@@ -101,7 +101,8 @@ def create_hint_file(wf_dir, content):
 
 Workflows = Workflows()
 query = Tools.getArgv(1)
-matches = Workflows.get_workflows() if query == str() else Workflows.search_in_workflows(query)
+matches = Workflows.get_workflows() if query == str(
+) else Workflows.search_in_workflows(query)
 
 clean_cache()
 alf = Items()
@@ -141,7 +142,6 @@ if len(matches) > 0:
             title=name,
             subtitle=subtitle,
             arg=arg,
-            type='file:skipcheck',
             automcomplete=name,
             valid=valid,
             quicklookurl=quicklook_url
