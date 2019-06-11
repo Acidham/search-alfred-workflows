@@ -8,7 +8,8 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 * SHIFT - Shows a workflow description and associated keywords
 * CMD - For addtional Actions:
   * Copy path to Clipboard
-  * Open WF Folder in Terminal (cd <path>)
+  * Open WF Folder in Terminal 
+    * If you would like to use other terminal than macOS terminal.app change config in Alfred > Features > Terminal to custom
   * Reveal in Finder
   * Open in ForkLift (requires ForkLift installed)
 
