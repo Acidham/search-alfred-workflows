@@ -1074,6 +1074,8 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 		<dict>
 			<key>colorindex</key>
 			<integer>7</integer>
+			<key>note</key>
+			<string>Open in Terminal</string>
 			<key>xpos</key>
 			<integer>955</integer>
 			<key>ypos</key>
