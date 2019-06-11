@@ -66,7 +66,7 @@ class Items(object):
             return json.dumps(self.item, indent=4)
 
     def getItems(self, response_type="json"):
-        """get the final items data for which represents
+        """Get the final items data for which represents
         the script filter output
 
         Args:
@@ -169,7 +169,6 @@ class Items(object):
 
     def write(self, response_type='json'):
         """Generate Script Filter output and write back to stdout
-
         Args:
             response_type (str, optional): json or dict as output format.
             Defaults to 'json'.
