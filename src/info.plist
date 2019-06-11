@@ -149,7 +149,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>891EC783-2E31-4A68-A0ED-0ADC2BF529CA</string>
+				<string>F6838B3B-38C0-4FA3-BD97-75A9865A287A</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -786,25 +786,17 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string></string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string>terminal.py</string>
-				<key>type</key>
-				<integer>8</integer>
+				<string>cd "{query}"</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.action.terminalcommand</string>
 			<key>uid</key>
-			<string>891EC783-2E31-4A68-A0ED-0ADC2BF529CA</string>
+			<string>F6838B3B-38C0-4FA3-BD97-75A9865A287A</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -988,17 +980,6 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>ypos</key>
 			<integer>290</integer>
 		</dict>
-		<key>891EC783-2E31-4A68-A0ED-0ADC2BF529CA</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>7</integer>
-			<key>note</key>
-			<string>Run Terminal or custom Terminal</string>
-			<key>xpos</key>
-			<integer>955</integer>
-			<key>ypos</key>
-			<integer>525</integer>
-		</dict>
 		<key>8A1D4D84-64B9-48D7-947D-48631A2697C0</key>
 		<dict>
 			<key>note</key>
@@ -1088,6 +1069,15 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<integer>645</integer>
 			<key>ypos</key>
 			<integer>220</integer>
+		</dict>
+		<key>F6838B3B-38C0-4FA3-BD97-75A9865A287A</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>7</integer>
+			<key>xpos</key>
+			<integer>955</integer>
+			<key>ypos</key>
+			<integer>525</integer>
 		</dict>
 		<key>FB99F2B1-4488-4028-BF89-91A9D3B28DD4</key>
 		<dict>
