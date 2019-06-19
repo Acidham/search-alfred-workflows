@@ -702,7 +702,7 @@ end run</string>
 				<key>script</key>
 				<string># THESE VARIABLES MUST BE SET. SEE THE ONEUPDATER README FOR AN EXPLANATION OF EACH.
 readonly remote_info_plist="https://raw.githubusercontent.com/Acidham/search-alfred-workflows/master/src/info.plist"
-readonly workflow_url="https://raw.githubusercontent.com/Acidham/search-alfred-workflows/master/Search%20Alfred%20Workflows.alfredworkflow"
+readonly workflow_url="acidham/search-alfred-workflow"
 readonly download_type='direct'
 readonly frequency_check='4'
 
@@ -1103,7 +1103,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>0.7.6</string>
+	<string>0.7.7</string>
 	<key>webaddress</key>
 	<string>https://github.com/Acidham/search-alfred-workflows</string>
 </dict>
