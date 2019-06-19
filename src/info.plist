@@ -56,16 +56,6 @@
 				<key>vitoclose</key>
 				<true/>
 			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>91ADF58A-F5BD-4A93-B4D7-5CED80686979</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
 		</array>
 		<key>241E4426-A689-4820-B949-A0BFC59150B6</key>
 		<array>
@@ -123,6 +113,16 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
+				<string>91ADF58A-F5BD-4A93-B4D7-5CED80686979</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
 				<string>98B322BB-3950-407D-8BCE-71C24471C9F3</string>
 				<key>modifiers</key>
 				<integer>0</integer>
@@ -134,6 +134,16 @@
 		</array>
 		<key>9D01F139-B2F1-484A-9B6C-68466EE79AFB</key>
 		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>91ADF58A-F5BD-4A93-B4D7-5CED80686979</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 			<dict>
 				<key>destinationuid</key>
 				<string>F08DA5A1-5F16-44A5-BFF5-D51BEECFBA2A</string>
@@ -277,20 +287,88 @@
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
-				<integer>68</integer>
+				<integer>0</integer>
 				<key>script</key>
-				<string>on run argv	set theQuery to item 1 of argv	tell application "System Events"		keystroke space using command down		delay 0.1		keystroke theQuery	end tellend run</string>
+				<string># THESE VARIABLES MUST BE SET. SEE THE ONEUPDATER README FOR AN EXPLANATION OF EACH.
+readonly remote_info_plist="https://raw.githubusercontent.com/Acidham/search-alfred-workflows/master/src/info.plist"
+readonly workflow_url="Acidham/search-alfred-workflows"
+readonly download_type='github_release'
+readonly frequency_check='4'
+
+# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED!
+function abort {
+  echo "${1}" &gt;&amp;2
+  exit 1
+}
+
+function url_exists {
+  curl --silent --location --output /dev/null --fail --range 0-0 "${1}"
+}
+
+function notification {
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
+    return
+  fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+}
+
+# Local sanity checks
+readonly local_info_plist='info.plist'
+readonly local_version="$(/usr/libexec/PlistBuddy -c 'print version' "${local_info_plist}")"
+
+[[ -n "${local_version}" ]] || abort 'You need to set a workflow version in the configuration sheet.'
+[[ "${download_type}" =~ ^(direct|page|github_release)$ ]] || abort "'download_type' (${download_type}) needs to be one of 'direct', 'page', or 'github_release'."
+[[ "${frequency_check}" =~ ^[0-9]+$ ]] || abort "'frequency_check' (${frequency_check}) needs to be a number."
+
+# Check for updates
+if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
+  if ! url_exists "${remote_info_plist}"; then abort "'remote_info_plist' (${remote_info_plist}) appears to not be reachable."; fi # Remote sanity check
+
+  readonly tmp_file="$(mktemp)"
+  curl --silent --location --output "${tmp_file}" "${remote_info_plist}"
+  readonly remote_version="$(/usr/libexec/PlistBuddy -c 'print version' "${tmp_file}")"
+
+  if [[ "${local_version}" == "${remote_version}" ]]; then
+    touch "${local_info_plist}" # Reset timer by touching local file
+    exit 0
+  fi
+
+  if [[ "${download_type}" == 'page' ]]; then
+    notification 'Opening download page…'
+    open "${workflow_url}"
+    exit 0
+  fi
+
+  download_url="$([[ "${download_type}" == 'github_release' ]] &amp;&amp; curl --silent "https://api.github.com/repos/${workflow_url}/releases/latest" | grep 'browser_download_url' | head -1 | sed -E 's/.*browser_download_url": "(.*)"/\1/' || echo "${workflow_url}")"
+
+  if url_exists "${download_url}"; then
+    notification 'Downloading and installing…'
+    curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${download_url}"
+    open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
+  else
+    abort "'workflow_url' (${download_url}) appears to not be reachable."
+  fi
+fi</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>6</integer>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>98B322BB-3950-407D-8BCE-71C24471C9F3</string>
+			<string>91ADF58A-F5BD-4A93-B4D7-5CED80686979</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -377,6 +455,29 @@
 			<string>D08C4D47-3E99-474A-B2BE-3956D2108AD3</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>on run argv	set theQuery to item 1 of argv	tell application "System Events"		keystroke space using command down		delay 0.1		keystroke theQuery	end tellend run</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>98B322BB-3950-407D-8BCE-71C24471C9F3</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -516,48 +617,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>68</integer>
-				<key>script</key>
-				<string>on run argv
-	set theQuery to item 1 of argv
-	tell application "Alfred 4"		search "?" &amp; theQuery	end tell
-	tell application "System Events" to key code 36
-end run</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>6</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>587395A1-C351-4946-8931-31EB74F5EE33</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string>{var:wf_name}</string>
-				<key>variables</key>
-				<dict/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>5A7C603B-46BD-474B-BFAD-BF7F9AFEDBC9</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -642,6 +701,48 @@ end run</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>on run argv
+	set theQuery to item 1 of argv
+	tell application "Alfred 4"		search "?" &amp; theQuery	end tell
+	tell application "System Events" to key code 36
+end run</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>587395A1-C351-4946-8931-31EB74F5EE33</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{var:wf_name}</string>
+				<key>variables</key>
+				<dict/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>5A7C603B-46BD-474B-BFAD-BF7F9AFEDBC9</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
@@ -691,97 +792,6 @@ end run</string>
 			<string>241E4426-A689-4820-B949-A0BFC59150B6</string>
 			<key>version</key>
 			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string># THESE VARIABLES MUST BE SET. SEE THE ONEUPDATER README FOR AN EXPLANATION OF EACH.
-readonly remote_info_plist="https://raw.githubusercontent.com/Acidham/search-alfred-workflows/master/src/info.plist"
-readonly workflow_url="Acidham/search-alfred-workflows"
-readonly download_type='github_release'
-readonly frequency_check='4'
-
-# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED!
-function abort {
-  echo "${1}" &gt;&amp;2
-  exit 1
-}
-
-function url_exists {
-  curl --silent --location --output /dev/null --fail --range 0-0 "${1}"
-}
-
-function notification {
-  readonly local notificator="$(find . -type d -name 'Notificator.app')"
-  if [[ -n "${notificator}" ]]; then
-    "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
-    return
-  fi
-
-  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-    return
-  fi
-
-  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
-}
-
-# Local sanity checks
-readonly local_info_plist='info.plist'
-readonly local_version="$(/usr/libexec/PlistBuddy -c 'print version' "${local_info_plist}")"
-
-[[ -n "${local_version}" ]] || abort 'You need to set a workflow version in the configuration sheet.'
-[[ "${download_type}" =~ ^(direct|page|github_release)$ ]] || abort "'download_type' (${download_type}) needs to be one of 'direct', 'page', or 'github_release'."
-[[ "${frequency_check}" =~ ^[0-9]+$ ]] || abort "'frequency_check' (${frequency_check}) needs to be a number."
-
-# Check for updates
-if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
-  if ! url_exists "${remote_info_plist}"; then abort "'remote_info_plist' (${remote_info_plist}) appears to not be reachable."; fi # Remote sanity check
-
-  readonly tmp_file="$(mktemp)"
-  curl --silent --location --output "${tmp_file}" "${remote_info_plist}"
-  readonly remote_version="$(/usr/libexec/PlistBuddy -c 'print version' "${tmp_file}")"
-
-  if [[ "${local_version}" == "${remote_version}" ]]; then
-    touch "${local_info_plist}" # Reset timer by touching local file
-    exit 0
-  fi
-
-  if [[ "${download_type}" == 'page' ]]; then
-    notification 'Opening download page…'
-    open "${workflow_url}"
-    exit 0
-  fi
-
-  download_url="$([[ "${download_type}" == 'github_release' ]] &amp;&amp; curl --silent "https://api.github.com/repos/${workflow_url}/releases/latest" | grep 'browser_download_url' | head -1 | sed -E 's/.*browser_download_url": "(.*)"/\1/' || echo "${workflow_url}")"
-
-  if url_exists "${download_url}"; then
-    notification 'Downloading and installing…'
-    curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${download_url}"
-    open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
-  else
-    abort "'workflow_url' (${download_url}) appears to not be reachable."
-  fi
-fi</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>91ADF58A-F5BD-4A93-B4D7-5CED80686979</string>
-			<key>version</key>
-			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -906,7 +916,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>955</integer>
 			<key>ypos</key>
-			<integer>525</integer>
+			<integer>615</integer>
 		</dict>
 		<key>08A82670-9DF2-4DDD-844F-115438000923</key>
 		<dict>
@@ -924,7 +934,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>955</integer>
 			<key>ypos</key>
-			<integer>385</integer>
+			<integer>475</integer>
 		</dict>
 		<key>124DA868-B3A5-4FD5-B10E-DAE49F82D3DF</key>
 		<dict>
@@ -942,7 +952,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>875</integer>
 			<key>ypos</key>
-			<integer>415</integer>
+			<integer>505</integer>
 		</dict>
 		<key>587395A1-C351-4946-8931-31EB74F5EE33</key>
 		<dict>
@@ -953,7 +963,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>955</integer>
 			<key>ypos</key>
-			<integer>225</integer>
+			<integer>315</integer>
 		</dict>
 		<key>5A7C603B-46BD-474B-BFAD-BF7F9AFEDBC9</key>
 		<dict>
@@ -962,7 +972,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>875</integer>
 			<key>ypos</key>
-			<integer>255</integer>
+			<integer>345</integer>
 		</dict>
 		<key>5B166927-5D09-4B01-8E06-679862FDBEDC</key>
 		<dict>
@@ -973,7 +983,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>955</integer>
 			<key>ypos</key>
-			<integer>830</integer>
+			<integer>920</integer>
 		</dict>
 		<key>712FA7F8-179D-4CE2-9EB2-457F3DD4CCCD</key>
 		<dict>
@@ -993,7 +1003,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>875</integer>
 			<key>ypos</key>
-			<integer>725</integer>
+			<integer>815</integer>
 		</dict>
 		<key>8A997CBF-B390-43F9-85C0-8876B512CB6B</key>
 		<dict>
@@ -1011,9 +1021,9 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>225</integer>
+			<integer>950</integer>
 			<key>ypos</key>
-			<integer>520</integer>
+			<integer>15</integer>
 		</dict>
 		<key>98B322BB-3950-407D-8BCE-71C24471C9F3</key>
 		<dict>
@@ -1024,14 +1034,14 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>955</integer>
 			<key>ypos</key>
-			<integer>65</integer>
+			<integer>150</integer>
 		</dict>
 		<key>9A3CC965-8254-49CE-A119-C7E092149207</key>
 		<dict>
 			<key>xpos</key>
 			<integer>1150</integer>
 			<key>ypos</key>
-			<integer>385</integer>
+			<integer>475</integer>
 		</dict>
 		<key>9D01F139-B2F1-484A-9B6C-68466EE79AFB</key>
 		<dict>
@@ -1047,7 +1057,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>955</integer>
 			<key>ypos</key>
-			<integer>695</integer>
+			<integer>785</integer>
 		</dict>
 		<key>CA1E55B1-E8F6-4F74-8A3C-C0F84C373A93</key>
 		<dict>
@@ -1056,7 +1066,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>875</integer>
 			<key>ypos</key>
-			<integer>555</integer>
+			<integer>645</integer>
 		</dict>
 		<key>D08C4D47-3E99-474A-B2BE-3956D2108AD3</key>
 		<dict>
@@ -1083,7 +1093,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>875</integer>
 			<key>ypos</key>
-			<integer>860</integer>
+			<integer>950</integer>
 		</dict>
 		<key>FE10FC76-4C1E-4EEA-83F3-5850915CA150</key>
 		<dict>
