@@ -702,7 +702,7 @@ end run</string>
 				<key>script</key>
 				<string># THESE VARIABLES MUST BE SET. SEE THE ONEUPDATER README FOR AN EXPLANATION OF EACH.
 readonly remote_info_plist="https://raw.githubusercontent.com/Acidham/search-alfred-workflows/master/src/info.plist"
-readonly workflow_url="acidham/search-alfred-workflow"
+readonly workflow_url="Acidham/search-alfred-workflows"
 readonly download_type='direct'
 readonly frequency_check='4'
 
