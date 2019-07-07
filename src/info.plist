@@ -113,7 +113,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>91ADF58A-F5BD-4A93-B4D7-5CED80686979</string>
+				<string>98B322BB-3950-407D-8BCE-71C24471C9F3</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -123,7 +123,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>98B322BB-3950-407D-8BCE-71C24471C9F3</string>
+				<string>91ADF58A-F5BD-4A93-B4D7-5CED80686979</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -287,6 +287,117 @@
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>on run argv
+
+    tell application id "com.runningwithcrayons.Alfred" to search (item 1 of argv)
+
+end run</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>98B322BB-3950-407D-8BCE-71C24471C9F3</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string></string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string>keywords.py</string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>Open Workflow with keyword</string>
+				<key>type</key>
+				<integer>8</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>8A997CBF-B390-43F9-85C0-8876B512CB6B</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>delimiter</key>
+				<string>|</string>
+				<key>trimarguments</key>
+				<true/>
+				<key>variableprefix</key>
+				<string>item</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.split</string>
+			<key>uid</key>
+			<string>08A82670-9DF2-4DDD-844F-115438000923</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>Choose a Keyword Action...</string>
+				<key>variables</key>
+				<dict>
+					<key>plist_path</key>
+					<string>{var:item1}</string>
+					<key>wf_name</key>
+					<string>{var:item2}</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>D08C4D47-3E99-474A-B2BE-3956D2108AD3</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
 				<string># THESE VARIABLES MUST BE SET. SEE THE ONEUPDATER README FOR AN EXPLANATION OF EACH.
@@ -387,113 +498,6 @@ fi</string>
 				<integer>1</integer>
 				<key>escaping</key>
 				<integer>0</integer>
-				<key>queuedelaycustom</key>
-				<integer>3</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<true/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string></string>
-				<key>script</key>
-				<string></string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string>keywords.py</string>
-				<key>subtext</key>
-				<string></string>
-				<key>title</key>
-				<string>Open Workflow with keyword</string>
-				<key>type</key>
-				<integer>8</integer>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>8A997CBF-B390-43F9-85C0-8876B512CB6B</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>delimiter</key>
-				<string>|</string>
-				<key>trimarguments</key>
-				<true/>
-				<key>variableprefix</key>
-				<string>item</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.split</string>
-			<key>uid</key>
-			<string>08A82670-9DF2-4DDD-844F-115438000923</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string>Choose a Keyword Action...</string>
-				<key>variables</key>
-				<dict>
-					<key>plist_path</key>
-					<string>{var:item1}</string>
-					<key>wf_name</key>
-					<string>{var:item2}</string>
-				</dict>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>D08C4D47-3E99-474A-B2BE-3956D2108AD3</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>68</integer>
-				<key>script</key>
-				<string>on run argv	set theQuery to item 1 of argv	tell application "System Events"		keystroke space using command down		delay 0.1		keystroke theQuery	end tellend run</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>6</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>98B322BB-3950-407D-8BCE-71C24471C9F3</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>alfredfiltersresults</key>
-				<false/>
-				<key>alfredfiltersresultsmatchmode</key>
-				<integer>0</integer>
-				<key>argumenttreatemptyqueryasnil</key>
-				<true/>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>0</integer>
 				<key>keyword</key>
 				<string>alf</string>
 				<key>queuedelaycustom</key>
@@ -527,6 +531,48 @@ fi</string>
 			<string>124DA868-B3A5-4FD5-B10E-DAE49F82D3DF</string>
 			<key>version</key>
 			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>on run argv
+	set theQuery to item 1 of argv
+	tell application "Alfred 4"		search "?" &amp; theQuery	end tell
+	tell application "System Events" to key code 36
+end run</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>587395A1-C351-4946-8931-31EB74F5EE33</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{var:wf_name}</string>
+				<key>variables</key>
+				<dict/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>5A7C603B-46BD-474B-BFAD-BF7F9AFEDBC9</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -695,48 +741,6 @@ fi</string>
 			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
 			<string>FE10FC76-4C1E-4EEA-83F3-5850915CA150</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>68</integer>
-				<key>script</key>
-				<string>on run argv
-	set theQuery to item 1 of argv
-	tell application "Alfred 4"		search "?" &amp; theQuery	end tell
-	tell application "System Events" to key code 36
-end run</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>6</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>587395A1-C351-4946-8931-31EB74F5EE33</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string>{var:wf_name}</string>
-				<key>variables</key>
-				<dict/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>5A7C603B-46BD-474B-BFAD-BF7F9AFEDBC9</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -916,7 +920,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>955</integer>
 			<key>ypos</key>
-			<integer>615</integer>
+			<integer>595</integer>
 		</dict>
 		<key>08A82670-9DF2-4DDD-844F-115438000923</key>
 		<dict>
@@ -934,7 +938,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>955</integer>
 			<key>ypos</key>
-			<integer>475</integer>
+			<integer>455</integer>
 		</dict>
 		<key>124DA868-B3A5-4FD5-B10E-DAE49F82D3DF</key>
 		<dict>
@@ -952,7 +956,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>875</integer>
 			<key>ypos</key>
-			<integer>505</integer>
+			<integer>485</integer>
 		</dict>
 		<key>587395A1-C351-4946-8931-31EB74F5EE33</key>
 		<dict>
@@ -963,7 +967,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>955</integer>
 			<key>ypos</key>
-			<integer>315</integer>
+			<integer>295</integer>
 		</dict>
 		<key>5A7C603B-46BD-474B-BFAD-BF7F9AFEDBC9</key>
 		<dict>
@@ -972,7 +976,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>875</integer>
 			<key>ypos</key>
-			<integer>345</integer>
+			<integer>325</integer>
 		</dict>
 		<key>5B166927-5D09-4B01-8E06-679862FDBEDC</key>
 		<dict>
@@ -983,7 +987,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>955</integer>
 			<key>ypos</key>
-			<integer>920</integer>
+			<integer>900</integer>
 		</dict>
 		<key>712FA7F8-179D-4CE2-9EB2-457F3DD4CCCD</key>
 		<dict>
@@ -994,7 +998,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>250</integer>
 			<key>ypos</key>
-			<integer>290</integer>
+			<integer>395</integer>
 		</dict>
 		<key>8A1D4D84-64B9-48D7-947D-48631A2697C0</key>
 		<dict>
@@ -1003,7 +1007,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>875</integer>
 			<key>ypos</key>
-			<integer>815</integer>
+			<integer>795</integer>
 		</dict>
 		<key>8A997CBF-B390-43F9-85C0-8876B512CB6B</key>
 		<dict>
@@ -1021,9 +1025,9 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>950</integer>
+			<integer>740</integer>
 			<key>ypos</key>
-			<integer>15</integer>
+			<integer>160</integer>
 		</dict>
 		<key>98B322BB-3950-407D-8BCE-71C24471C9F3</key>
 		<dict>
@@ -1034,14 +1038,14 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>955</integer>
 			<key>ypos</key>
-			<integer>150</integer>
+			<integer>65</integer>
 		</dict>
 		<key>9A3CC965-8254-49CE-A119-C7E092149207</key>
 		<dict>
 			<key>xpos</key>
 			<integer>1150</integer>
 			<key>ypos</key>
-			<integer>475</integer>
+			<integer>455</integer>
 		</dict>
 		<key>9D01F139-B2F1-484A-9B6C-68466EE79AFB</key>
 		<dict>
@@ -1050,14 +1054,14 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>465</integer>
 			<key>ypos</key>
-			<integer>260</integer>
+			<integer>365</integer>
 		</dict>
 		<key>B6460CEC-FE31-4666-960A-A2C1FEED77FC</key>
 		<dict>
 			<key>xpos</key>
 			<integer>955</integer>
 			<key>ypos</key>
-			<integer>785</integer>
+			<integer>765</integer>
 		</dict>
 		<key>CA1E55B1-E8F6-4F74-8A3C-C0F84C373A93</key>
 		<dict>
@@ -1066,7 +1070,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>875</integer>
 			<key>ypos</key>
-			<integer>645</integer>
+			<integer>625</integer>
 		</dict>
 		<key>D08C4D47-3E99-474A-B2BE-3956D2108AD3</key>
 		<dict>
@@ -1084,7 +1088,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>645</integer>
 			<key>ypos</key>
-			<integer>220</integer>
+			<integer>325</integer>
 		</dict>
 		<key>FB99F2B1-4488-4028-BF89-91A9D3B28DD4</key>
 		<dict>
@@ -1093,7 +1097,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>875</integer>
 			<key>ypos</key>
-			<integer>950</integer>
+			<integer>930</integer>
 		</dict>
 		<key>FE10FC76-4C1E-4EEA-83F3-5850915CA150</key>
 		<dict>
@@ -1102,7 +1106,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>xpos</key>
 			<integer>360</integer>
 			<key>ypos</key>
-			<integer>290</integer>
+			<integer>395</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -1113,7 +1117,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>0.7.7</string>
+	<string>0.8</string>
 	<key>webaddress</key>
 	<string>https://github.com/Acidham/search-alfred-workflows</string>
 </dict>
