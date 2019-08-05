@@ -22,4 +22,8 @@ Search-Alfred-Workflows searches in Title, Keywords, Description of a workflow a
   * Open in ForkLift (requires ForkLift installed)
 
 ## Config
-* exclude_disabled: True - ignore disabled workflow in search
+
+Worfklows → go to “Search Alfred Workflow” → click on the`[X]` upper right corner: 
+
+* `exclude_disabled`: True - ignore disabled workflow in search
+
