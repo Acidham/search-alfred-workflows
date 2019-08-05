@@ -2,6 +2,8 @@
 
 Search-Alfred-Workflows searches in Title, Keywords, Description of a workflow and shows avaialble keywords for direct execution. It also allows to execute addtional actions on a workflow such as open in terminal or copy worfklow path to the clipboard.
 
+Download [Search-Alfred-Workflow](https://github.com/Acidham/search-alfred-workflows/releases/latest) latest release.
+
 ### Search with the shortcut do find the corresponding Workflow
 
 ![Screen Shot 2019-08-05 at 07.33.33](README.assets/Screen%20Shot%202019-08-05%20at%2007.33.33.png)
@@ -26,4 +28,3 @@ Search-Alfred-Workflows searches in Title, Keywords, Description of a workflow a
 Worfklows → go to “Search Alfred Workflow” → click on the`[X]` upper right corner: 
 
 * `exclude_disabled`: True - ignore disabled workflow in search
-
