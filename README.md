@@ -1,6 +1,6 @@
 # Search-Alfred-Workflows
 
-Search-Alfred-Workflows searches in Title, Keywords, Description of a workflow and shows avaialble keywords for direct execution. It also allows to execute addtional actions on a workflow such as open in terminal or copy worfklow path to the clipboard.
+Search-Alfred-Workflows searches in Title, Keywords, Description of a workflow and shows avaialable keywords for direct execution. It also allows to execute addtional actions on a workflow such as open in terminal or copy worfklow path to the clipboard.
 
 **Search with the shortcut do find the corresponding Workflow:**
 
