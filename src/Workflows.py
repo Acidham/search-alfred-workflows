@@ -15,6 +15,31 @@ class Workflows(object):
         'alfred.workflow.input.listfilter'
     ]
 
+    # HOTMOD constants for Keycombo
+    SHIFT = u"\u21E7"
+    CONTROL = u"\u2303"
+    COMMAND = u"\u2318"
+    OPTION = u"\u2325"
+
+    HOTMOD = {	131072: SHIFT,
+               262144: CONTROL,
+               262401: CONTROL,
+               393216: SHIFT+CONTROL,
+               524288: OPTION,
+               655360: SHIFT+OPTION,
+               786432: CONTROL+OPTION,
+               917504: SHIFT+CONTROL+OPTION,
+               1048576: COMMAND,
+               1179648: SHIFT+COMMAND,
+               1310720: CONTROL+COMMAND,
+               1310985: CONTROL+COMMAND,
+               1441792: SHIFT+CONTROL+COMMAND,
+               1572864: OPTION+COMMAND,
+               1703936: SHIFT+OPTION+COMMAND,
+               1835008: CONTROL+OPTION+COMMAND,
+               1966080: SHIFT+CONTROL+OPTION+COMMAND
+               }
+
     def __init__(self):
         """Workflow data represenative
         """
@@ -81,8 +106,28 @@ class Workflows(object):
             desc = plist_info.get('description')
             item_objects = plist_info.get('objects')
             keyword_list = list()
+            keyb_list = list()
             for o in item_objects:
                 item_type = o.get('type')
+                key_shortcut = str()
+                # Get list of keyboard shortcuts
+                if item_type == 'alfred.workflow.trigger.hotkey':
+                    item_config = o.get('config')
+                    hm = item_config.get('hotmod')
+                    if hm in self.HOTMOD:
+                        hotmod = self.HOTMOD.get(hm)
+                    elif hm > 0:
+                        sys.stderr.write("Hotmod: " + str(hm) + " not found in: " + plist_path)
+                        hotmod = str()
+                    else:
+                        hotmod = str()
+                    hotstring = item_config.get('hotstring')
+                    key_shortcut = u'{0} {1}'.format(
+                        hotmod, hotstring) if hotmod or hotstring else None
+                    keyb_list.append({
+                        'keyb': key_shortcut
+                    })
+                # Get list of keywords
                 if item_type in self.INPUT_TYPES:
                     item_config = o.get('config')
                     keyword = item_config.get('keyword')
@@ -95,7 +140,7 @@ class Workflows(object):
                         'keyword': keyword,
                         'title': title,
                         'text': text,
-                        'withspace': withspace
+                        'withspace': withspace,
                     })
             if plist_info.get('disabled') and self.exclude_disabled:
                 return None
@@ -104,7 +149,8 @@ class Workflows(object):
                     'name': name,
                     'path': plist_path,
                     'description': desc,
-                    'keywords': keyword_list
+                    'keywords': keyword_list,
+                    'keyb': keyb_list
                 }
         except:
             sys.stderr.write("Corrupt Workflow found, path: " + plist_path)

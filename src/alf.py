@@ -12,9 +12,25 @@ class KeywordFormatter(object):
         """Formatted list of Alfred keyboard shortcuts
         """
         self.keywords = list()
+        self.keyb_shortcuts = list()
 
     def has_keywords(self):
+        """
+        Check if object has keyword entries
+
+        Returns:
+            boolean: true, if object has keywords otherwise false
+        """
         return True if self.keywords else False
+
+    def add_keyb(self, keyb):
+        """Add Keyboard Shortcuts enty to Formatter
+
+        Args:
+            keyb (string): Keyboard shorcut item
+        """
+        if keyb != str():
+            self.keyb_shortcuts.append([keyb])
 
     def add_keyword_title(self, keyword, title):
         """Add a alfred keyword, title pair
@@ -53,6 +69,21 @@ class KeywordFormatter(object):
         for i in formatted_keywords:
             result += "* " + i + "\n"
         return result if self.keywords else "* n/a"
+
+    def get_keyb_md(self):
+        """Generate keyboard shortcut list
+
+        Returns:
+            string: formatted MD content
+        """
+        formatted_keyb = list()
+        result = str()
+        for k in self.keyb_shortcuts:
+            if k[0]:
+                formatted_keyb.append("* " + k[0])
+        for fk in formatted_keyb:
+            result += fk + "\n"
+        return result if len(self.keyb_shortcuts) > 0 else None
 
 
 def clean_cache():
@@ -108,9 +139,17 @@ clean_cache()
 alf = Items()
 if len(matches) > 0:
     for m in matches:
+        # init Keyword and Keyboard text formatter for markdown output
         kf = KeywordFormatter()
+        # WF description
         description = m.get('description') if m.get('description') else ' - '
+        # WF name
         name = m.get('name')
+        # Read WF keyboard shortcuts
+        keyb_list = m.get('keyb')
+        for k in keyb_list:
+            kf.add_keyb(k.get('keyb'))
+        # Get list of keywords
         keyword_list = m.get('keywords')
         info_plist_path = m.get('path')
         wf_path = os.path.dirname(info_plist_path)
@@ -119,7 +158,7 @@ if len(matches) > 0:
             text = kitem.get('text') if kitem.get('text') else str()
             title = kitem.get('title') if kitem.get('title') else text
             kf.add_keyword_title(keyword, title)
-
+        # Create Content for md file
         content = ((
             "# %s\n"
             "\n"
@@ -127,7 +166,12 @@ if len(matches) > 0:
             "* %s\n"
             "\n"
             "### Keywords\n"
-            "%s") % (name, description, kf.get_keywords_md())).encode('utf-8')
+            "%s"
+        ) % (name, description, kf.get_keywords_md())).encode('utf-8')
+        # Add keyboard shortcuts if available to the md content
+        if kf.get_keyb_md():
+            content += ("\n\n### Shortcuts\n%s" % (kf.get_keyb_md())).encode('utf-8')
+        # Quicklook file URL
         quicklook_url = create_hint_file(wf_path, content)
         ip = wf_path + "/icon.png"
         # use default icon in alf WF directory in case searched wf has not icon defined
