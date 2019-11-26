@@ -14,10 +14,14 @@ Search-Alfred-Workflows searches in Title, Keywords, Description of a workflow a
 
 [Search-Alfred-Workflow](https://github.com/Acidham/search-alfred-workflows/releases/latest) latest release.
 
+## Requirements
+
+* The quicklook description requires a markdown quicklook plugin to display markdown properly: [QLMarkdown on Git](https://github.com/toland/qlmarkdown/issues)
+
 ## Options
 
 * `ENTER` - Shows a list of keywords in the workflow and starts the workflow with a keyword
-* `SHIFT` - Shows the workflow description and associated keywords
+* `SHIFT` - Shows the workflow description , associated keywords and keyboard Shortcuts
 * `CMD` - For addtional Actions:
   * Copy path to Clipboard
   * Open WF Folder in Terminal 
