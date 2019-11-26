@@ -14,7 +14,7 @@ Search-Alfred-Workflows searches in Title, Keywords, Description of a workflow a
 
 [Search-Alfred-Workflow](https://github.com/Acidham/search-alfred-workflows/releases/latest) latest release.
 
-## Optional
+### Optional
 
 * The quicklook help requires markdown [QLMarkdown](https://github.com/toland/qlmarkdown/issues) plugin to display markdown properly
 
