@@ -34,4 +34,4 @@ Search-Alfred-Workflows searches in Title, Keywords, Description of a workflow a
 Worfklows → go to “Search Alfred Workflow” → click on the`[X]` upper right corner: 
 
 * `exclude_disabled`: True - ignore disabled workflow in search
-* `file_manager`: PATH - path to executable file manager e.g. Forklift. If not applicable just empty value
+* `file_manager`: PATH - path to executable file manager e.g. Forklift. If not applicable just leave value empty/unset.
