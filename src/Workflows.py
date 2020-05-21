@@ -12,7 +12,8 @@ class Workflows(object):
     INPUT_TYPES = [
         'alfred.workflow.input.scriptfilter',
         'alfred.workflow.input.keyword',
-        'alfred.workflow.input.listfilter'
+        'alfred.workflow.input.listfilter',
+        'alfred.workflow.input.filefilter'
     ]
 
     # HOTMOD constants for Keycombo
@@ -20,6 +21,7 @@ class Workflows(object):
     CONTROL = u"\u2303"
     COMMAND = u"\u2318"
     OPTION = u"\u2325"
+    FN = "fn"
 
     HOTMOD = {	131072: SHIFT,
                262144: CONTROL,
@@ -37,7 +39,8 @@ class Workflows(object):
                1572864: OPTION+COMMAND,
                1703936: SHIFT+OPTION+COMMAND,
                1835008: CONTROL+OPTION+COMMAND,
-               1966080: SHIFT+CONTROL+OPTION+COMMAND
+               1966080: SHIFT+CONTROL+OPTION+COMMAND,
+               8388608: FN
                }
 
     def __init__(self):

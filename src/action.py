@@ -1,6 +1,8 @@
 #!/usr/bin/python
 
-from Alfred import Items
+import os
+
+from Alfred import Items, Tools
 
 # Script Filter icon [Title,Subtitle,arg/uid/icon]
 wf_items = [
@@ -8,8 +10,13 @@ wf_items = [
     ['Path to Clipboard', 'Copy Workflow path to Clipoard', 'clipboard'],
     ['Open in Terminal', 'Open Workflow path in Terminal', 'terminal'],
     ['Finder', 'Reveal in Finder', 'finder'],
-    ['Forklift', 'Reveal in Forkflift', 'forklift']
 ]
+
+# Add file manager defined in Alfred wf env
+file_manager_path = Tools.getEnv('file_manager')
+if file_manager_path and os.path.isfile(file_manager_path):
+    app_name = os.path.splitext(os.path.basename(file_manager_path))[0]
+    wf_items.append([app_name, "Reveal in {}".format(app_name), "file_manager"])
 
 wf = Items()
 for w in wf_items:

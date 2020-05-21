@@ -24,7 +24,7 @@ class KeywordFormatter(object):
         return True if self.keywords else False
 
     def add_keyb(self, keyb):
-        """Add Keyboard Shortcuts enty to Formatter
+        """Add Keyboard Shortcuts entry to Formatter
 
         Args:
             keyb (string): Keyboard shorcut item
@@ -70,6 +70,19 @@ class KeywordFormatter(object):
             result += "* " + i + "\n"
         return result if self.keywords else "* n/a"
 
+    def get_keyboard_shortcuts(self):
+        """
+        Return list of Keyboard shortcuts
+
+        Returns:
+            list: List with keyboard shortcuts
+        """
+        res = list()
+        for k in self.keyb_shortcuts:
+            if k[0]:
+                res.append(k[0])
+        return res
+
     def get_keyb_md(self):
         """Generate keyboard shortcut list
 
@@ -78,9 +91,8 @@ class KeywordFormatter(object):
         """
         formatted_keyb = list()
         result = str()
-        for k in self.keyb_shortcuts:
-            if k[0]:
-                formatted_keyb.append("* " + k[0])
+        for k in self.get_keyboard_shortcuts():
+            formatted_keyb.append("* " + k)
         for fk in formatted_keyb:
             result += fk + "\n"
         return result if len(self.keyb_shortcuts) > 0 else None
@@ -179,8 +191,10 @@ if len(matches) > 0:
         keyword_text = kf.get_keywords_scriptfilter()
         valid = kf.has_keywords()
         subtitle = description + \
-            u', Press \u23CE to choose from Keyword(s): ' + \
+            u', Keywords: ' + \
             keyword_text if valid else description
+        if len(kf.get_keyboard_shortcuts()) > 0:
+            subtitle += ", Keyboard: " + ",".join(kf.get_keyboard_shortcuts())
         arg = os.path.dirname(info_plist_path) + "|" + name
         alf.setItem(
             title=name,

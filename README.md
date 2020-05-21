@@ -27,10 +27,11 @@ Search-Alfred-Workflows searches in Title, Keywords, Description of a workflow a
   * Open WF Folder in Terminal 
     * If you would like to use other terminal than macOS terminal.app change config in Alfred > Features > Terminal to custom
   * Reveal in Finder
-  * Open in ForkLift (requires ForkLift installed)
+  * Open in FileManager (if defined)
 
 ## Config
 
 Worfklows → go to “Search Alfred Workflow” → click on the`[X]` upper right corner: 
 
 * `exclude_disabled`: True - ignore disabled workflow in search
+* `file_manager`: PATH - path to executable file manager e.g. Forklift. If not applicable just empty value

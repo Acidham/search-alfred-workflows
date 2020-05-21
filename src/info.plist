@@ -725,9 +725,9 @@ end run</string>
 						<key>matchmode</key>
 						<integer>0</integer>
 						<key>matchstring</key>
-						<string>forklift</string>
+						<string>file_manager</string>
 						<key>outputlabel</key>
-						<string>forklift</string>
+						<string>file_manager</string>
 						<key>uid</key>
 						<string>8C629137-75B4-458B-9BF1-EAF65475D832</string>
 					</dict>
@@ -859,15 +859,13 @@ end run</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>query=$1
-
-open -a ForkLift "$query"</string>
+				<string>$file_manager "$1"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>5</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -905,10 +903,12 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
   * Copy path to Clipboard
   * Open WF Folder in Terminal (cd &lt;path&gt;)
   * Reveal in Finder
-  * Open in ForkLift (requires ForkLift installed)
+  * Open in FileManager (if defined)
 
 ## Config
-* exclude_disabled: True - ignore disabled workflow in search</string>
+
+* exclude_disabled: True - ignore disabled workflow in search
+* file_manager: PATH - path to executable file manager e.g. Forklift. If not applicable just empty value</string>
 	<key>uidata</key>
 	<dict>
 		<key>00BCABBD-3B6F-42FE-A0F7-28624120F3DE</key>
@@ -981,7 +981,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>colorindex</key>
 			<integer>6</integer>
 			<key>note</key>
-			<string>Reveal in ForkLift</string>
+			<string>Reveal in fman</string>
 			<key>xpos</key>
 			<integer>955</integer>
 			<key>ypos</key>
@@ -1111,11 +1111,13 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 	<dict>
 		<key>exclude_disabled</key>
 		<string>true</string>
+		<key>file_manager</key>
+		<string>/Applications/fman.app/Contents/SharedSupport/bin/fman</string>
 	</dict>
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>0.9</string>
+	<string>1.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/Acidham/search-alfred-workflows</string>
 </dict>
