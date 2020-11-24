@@ -1,8 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import os
 
-from Alfred import Items, Tools
+from Alfred3 import Items, Tools
 from Workflows import Workflows
 
 
@@ -14,7 +14,7 @@ class KeywordFormatter(object):
         self.keywords = list()
         self.keyb_shortcuts = list()
 
-    def has_keywords(self):
+    def has_keywords(self) -> bool:
         """
         Check if object has keyword entries
 
@@ -23,7 +23,7 @@ class KeywordFormatter(object):
         """
         return True if self.keywords else False
 
-    def add_keyb(self, keyb):
+    def add_keyb(self, keyb: str) -> None:
         """Add Keyboard Shortcuts entry to Formatter
 
         Args:
@@ -32,7 +32,7 @@ class KeywordFormatter(object):
         if keyb != str():
             self.keyb_shortcuts.append([keyb])
 
-    def add_keyword_title(self, keyword, title):
+    def add_keyword_title(self, keyword: str, title: str) -> None:
         """Add a alfred keyword, title pair
 
         Args:
@@ -45,7 +45,7 @@ class KeywordFormatter(object):
         if keyword != str():
             self.keywords.append([keyword, title])
 
-    def get_keywords_scriptfilter(self):
+    def get_keywords_scriptfilter(self) -> str:
         """Generate Content for showing in Alfred scripfilter
 
         Returns:
@@ -56,7 +56,7 @@ class KeywordFormatter(object):
             output_keywords.append(i[0])
         return '; '.join(output_keywords) if len(output_keywords) > 0 else " (n/a)"
 
-    def get_keywords_md(self):
+    def get_keywords_md(self) -> str:
         """Generate Markdown content for showing in Quicklook file
 
         Returns:
@@ -65,12 +65,12 @@ class KeywordFormatter(object):
         formatted_keywords = list()
         result = str()
         for i in self.keywords:
-            formatted_keywords.append("**" + i[0] + "** - " + i[1])
+            formatted_keywords.append(f"**{i[0]}** - {i[1]}")
         for i in formatted_keywords:
-            result += "* " + i + "\n"
+            result += f"* {i}\n"
         return result if self.keywords else "* n/a"
 
-    def get_keyboard_shortcuts(self):
+    def get_keyboard_shortcuts(self) -> list:
         """
         Return list of Keyboard shortcuts
 
@@ -83,7 +83,7 @@ class KeywordFormatter(object):
                 res.append(k[0])
         return res
 
-    def get_keyb_md(self):
+    def get_keyb_md(self) -> str:
         """Generate keyboard shortcut list
 
         Returns:
@@ -92,13 +92,13 @@ class KeywordFormatter(object):
         formatted_keyb = list()
         result = str()
         for k in self.get_keyboard_shortcuts():
-            formatted_keyb.append("* " + k)
+            formatted_keyb.append(f"*{k}")
         for fk in formatted_keyb:
-            result += fk + "\n"
+            result += f"{fk}\n"
         return result if len(self.keyb_shortcuts) > 0 else None
 
 
-def clean_cache():
+def clean_cache() -> None:
     """Remove all .md files in cache directory
     """
     cache_dir = get_cache_directory()
@@ -109,7 +109,7 @@ def clean_cache():
             os.remove(f_path)
 
 
-def get_cache_directory():
+def get_cache_directory() -> str:
     """Get Alfreds Cache Directory, if not existent the directory will be created
 
     Returns:
@@ -121,7 +121,7 @@ def get_cache_directory():
     return target_dir
 
 
-def create_hint_file(wf_dir, content):
+def create_hint_file(wf_dir: str, content: str) -> str:
     """Creates hint file.md in workflow cache
 
     Args:
@@ -136,12 +136,13 @@ def create_hint_file(wf_dir, content):
     wf_dir_name = ''.join(
         [i for i in spath if str(i).startswith('user.workflow')])
     if wf_dir_name != str():
-        target_file = target_dir + '/' + wf_dir_name + '.md'
-        with open(target_file, "w+") as f:
+        target_file = f"{target_dir}/{wf_dir_name}.md"
+        with open(target_file, "wb+") as f:
             f.write(content)
             return target_file
 
 
+Tools.logPyVersion()
 Workflows = Workflows()
 query = Tools.getArgv(1)
 matches = Workflows.get_workflows() if query == str(
@@ -182,7 +183,9 @@ if len(matches) > 0:
         ) % (name, description, kf.get_keywords_md())).encode('utf-8')
         # Add keyboard shortcuts if available to the md content
         if kf.get_keyb_md():
-            content += ("\n\n### Shortcuts\n%s" % (kf.get_keyb_md())).encode('utf-8')
+            # content += ("\n\n### Shortcuts\n%s" % (kf.get_keyb_md())).encode('utf-8')
+            content += f"\n\n### Shortcuts\n{kf.get_keyb_md()}".encode('utf-8')
+
         # Quicklook file URL
         quicklook_url = create_hint_file(wf_path, content)
         ip = wf_path + "/icon.png"
@@ -217,7 +220,7 @@ if len(matches) > 0:
 else:
     alf.setItem(
         title='No Workflow matches the search query!',
-        subtitle='...for query: \"%s\"' % query,
+        subtitle=f"...for query: \"{query}\"",
         valid=False
     )
     alf.addItem()

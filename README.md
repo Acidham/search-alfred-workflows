@@ -12,11 +12,7 @@ Search-Alfred-Workflows searches in Title, Keywords, Description of a workflow a
 
 ## Download
 
-[Search-Alfred-Workflow](https://github.com/Acidham/search-alfred-workflows/releases/latest) latest release.
-
-### Optional
-
-* The quicklook help requires markdown [QLMarkdown](https://github.com/toland/qlmarkdown/issues) plugin to display markdown properly
+* [Search-Alfred-Workflow](https://github.com/Acidham/search-alfred-workflows/releases/latest) latest release.
 
 ## Options
 
@@ -35,3 +31,11 @@ Worfklows → go to “Search Alfred Workflow” → click on the`[X]` upper rig
 
 * `exclude_disabled`: True - ignore disabled workflow in search
 * `file_manager`: PATH - path to executable file manager e.g. Forklift. If not applicable just leave value empty/unset.
+
+## Requirements
+
+* Python 3
+
+## Optional
+
+* The quicklook help requires markdown [QLMarkdown](https://github.com/toland/qlmarkdown/issues) plugin to display markdown properly

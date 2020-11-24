@@ -320,7 +320,7 @@ end run</string>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
-				<integer>0</integer>
+				<integer>102</integer>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -332,7 +332,7 @@ end run</string>
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string></string>
+				<string>./py3.sh keywords.py "$1"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -342,7 +342,7 @@ end run</string>
 				<key>title</key>
 				<string>Open Workflow with keyword</string>
 				<key>type</key>
-				<integer>8</integer>
+				<integer>5</integer>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -375,6 +375,8 @@ end run</string>
 			<dict>
 				<key>argument</key>
 				<string>Choose a Keyword Action...</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>plist_path</key>
@@ -495,7 +497,7 @@ fi</string>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
-				<integer>0</integer>
+				<integer>102</integer>
 				<key>keyword</key>
 				<string>alf</string>
 				<key>queuedelaycustom</key>
@@ -509,7 +511,7 @@ fi</string>
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string></string>
+				<string>./py3.sh alf.py "$1"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -519,7 +521,7 @@ fi</string>
 				<key>title</key>
 				<string>Search Alfred Workflows</string>
 				<key>type</key>
-				<integer>8</integer>
+				<integer>5</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -556,7 +558,7 @@ fi</string>
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string></string>
+				<string>./py3.sh action.py "$1"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -566,7 +568,7 @@ fi</string>
 				<key>title</key>
 				<string></string>
 				<key>type</key>
-				<integer>8</integer>
+				<integer>5</integer>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -626,6 +628,8 @@ end run</string>
 			<dict>
 				<key>argument</key>
 				<string></string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>plist_path</key>
@@ -646,6 +650,8 @@ end run</string>
 			<dict>
 				<key>argument</key>
 				<string>{var:wf_name}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict/>
 			</dict>
@@ -653,6 +659,63 @@ end run</string>
 			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
 			<string>5A7C603B-46BD-474B-BFAD-BF7F9AFEDBC9</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Copied to the Clipboard</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>9A3CC965-8254-49CE-A119-C7E092149207</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>0AAAF71A-C9BB-4A0F-9458-42BBE41E94FB</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{var:plist_path}</string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>241E4426-A689-4820-B949-A0BFC59150B6</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -745,59 +808,6 @@ end run</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<true/>
-				<key>removeextension</key>
-				<false/>
-				<key>text</key>
-				<string>{query}</string>
-				<key>title</key>
-				<string>Copied to the Clipboard</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>9A3CC965-8254-49CE-A119-C7E092149207</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>autopaste</key>
-				<false/>
-				<key>clipboardtext</key>
-				<string>{query}</string>
-				<key>transient</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
-			<key>uid</key>
-			<string>0AAAF71A-C9BB-4A0F-9458-42BBE41E94FB</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string>{var:plist_path}</string>
-				<key>variables</key>
-				<dict/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>241E4426-A689-4820-B949-A0BFC59150B6</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>path</key>
 				<string></string>
 			</dict>
@@ -813,6 +823,8 @@ end run</string>
 			<dict>
 				<key>argument</key>
 				<string>{var:plist_path}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict/>
 			</dict>
@@ -841,6 +853,8 @@ end run</string>
 			<dict>
 				<key>argument</key>
 				<string>{var:plist_path}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict/>
 			</dict>
@@ -879,6 +893,8 @@ end run</string>
 			<dict>
 				<key>argument</key>
 				<string>{var:plist_path}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict/>
 			</dict>
@@ -908,7 +924,11 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 ## Config
 
 * exclude_disabled: True - ignore disabled workflow in search
-* file_manager: PATH - path to executable file manager e.g. Forklift. If not applicable just empty value</string>
+* file_manager: PATH - path to executable file manager e.g. Forklift. If not applicable just empty value
+
+## Required
+
+* Python 3</string>
 	<key>uidata</key>
 	<dict>
 		<key>00BCABBD-3B6F-42FE-A0F7-28624120F3DE</key>
@@ -981,7 +1001,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>colorindex</key>
 			<integer>6</integer>
 			<key>note</key>
-			<string>Reveal in fman</string>
+			<string>Reveal in file manager</string>
 			<key>xpos</key>
 			<integer>955</integer>
 			<key>ypos</key>
@@ -1084,9 +1104,9 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 		<key>F08DA5A1-5F16-44A5-BFF5-D51BEECFBA2A</key>
 		<dict>
 			<key>xpos</key>
-			<integer>645</integer>
+			<integer>630</integer>
 			<key>ypos</key>
-			<integer>325</integer>
+			<integer>570</integer>
 		</dict>
 		<key>FB99F2B1-4488-4028-BF89-91A9D3B28DD4</key>
 		<dict>
@@ -1117,7 +1137,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/Acidham/search-alfred-workflows</string>
 </dict>

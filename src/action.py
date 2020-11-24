@@ -1,8 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import os
 
-from Alfred import Items, Tools
+from Alfred3 import Items, Tools
 
 # Script Filter icon [Title,Subtitle,arg/uid/icon]
 wf_items = [
@@ -16,7 +16,7 @@ wf_items = [
 file_manager_path = Tools.getEnv('file_manager')
 if file_manager_path and os.path.isfile(file_manager_path):
     app_name = os.path.splitext(os.path.basename(file_manager_path))[0]
-    wf_items.append([app_name, "Reveal in {}".format(app_name), "file_manager"])
+    wf_items.append([app_name, f"Reveal in {app_name}", "file_manager"])
 
 wf = Items()
 for w in wf_items:
@@ -25,7 +25,7 @@ for w in wf_items:
         subtitle=w[1],
         arg=w[2]
     )
-    icon_path = 'icons/' + w[2] + '.png'
+    icon_path = f'icons/{w[2]}.png'
     wf.setIcon(icon_path, m_type='image')
     wf.addItem()
 
