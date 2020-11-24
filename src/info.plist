@@ -1137,7 +1137,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>1.1</string>
+	<string>1.1.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/Acidham/search-alfred-workflows</string>
 </dict>

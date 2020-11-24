@@ -1,7 +1,7 @@
 import os
 import re
 import sys
-from plistlib import readPlist
+from plistlib import load
 
 from Alfred3 import Tools
 
@@ -72,7 +72,8 @@ class Workflows(object):
             dict: Plist in dict format
         """
         try:
-            return readPlist(plist_path)
+            with open(plist_path, "rb") as fp:
+                return load(fp)
         except:
             raise ValueError
 
@@ -92,7 +93,7 @@ class Workflows(object):
         """
         alfred_dir = self.get_wf_directory()
         workflow_dir_names = os.listdir(alfred_dir)
-        return [alfred_dir + '/' + f + '/info.plist' for f in workflow_dir_names if os.path.isfile(alfred_dir + '/' + f + '/info.plist')]
+        return [os.path.join(alfred_dir, f, "info.plist")for f in workflow_dir_names if os.path.isfile(os.path.join(alfred_dir, f, "info.plist"))]
 
     def get_item(self, plist_path):
         """Get content of worfklow item
@@ -120,7 +121,7 @@ class Workflows(object):
                     if hm in self.HOTMOD:
                         hotmod = self.HOTMOD.get(hm)
                     elif hm > 0:
-                        sys.stderr.write("Hotmod: " + str(hm) + " not found in: " + plist_path)
+                        sys.stderr.write(f"Hotmod: {str(hm)} not found in: {plist_path}")
                         hotmod = str()
                     else:
                         hotmod = str()
@@ -156,7 +157,7 @@ class Workflows(object):
                     'keyb': keyb_list
                 }
         except:
-            sys.stderr.write("Corrupt Workflow found, path: " + plist_path)
+            sys.stderr.write(f"Corrupt Workflow found, path: {plist_path}")
             return None
 
     def _get_workflows_list(self):
