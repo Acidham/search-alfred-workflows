@@ -248,7 +248,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>5B166927-5D09-4B01-8E06-679862FDBEDC</string>
+				<string>243D7170-5509-458C-A42F-5766F7A4FB26</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -891,6 +891,21 @@ end run</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>openwith</key>
+				<string>/System/Volumes/Data/Applications/ForkLift.app</string>
+				<key>sourcefile</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openfile</string>
+			<key>uid</key>
+			<string>243D7170-5509-458C-A42F-5766F7A4FB26</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argument</key>
 				<string>{var:plist_path}</string>
 				<key>passthroughargument</key>
@@ -976,6 +991,13 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>ypos</key>
 			<integer>485</integer>
 		</dict>
+		<key>243D7170-5509-458C-A42F-5766F7A4FB26</key>
+		<dict>
+			<key>xpos</key>
+			<integer>960</integer>
+			<key>ypos</key>
+			<integer>900</integer>
+		</dict>
 		<key>587395A1-C351-4946-8931-31EB74F5EE33</key>
 		<dict>
 			<key>colorindex</key>
@@ -1003,9 +1025,9 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>note</key>
 			<string>Reveal in file manager</string>
 			<key>xpos</key>
-			<integer>955</integer>
+			<integer>390</integer>
 			<key>ypos</key>
-			<integer>900</integer>
+			<integer>835</integer>
 		</dict>
 		<key>712FA7F8-179D-4CE2-9EB2-457F3DD4CCCD</key>
 		<dict>
@@ -1132,12 +1154,12 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 		<key>exclude_disabled</key>
 		<string>true</string>
 		<key>file_manager</key>
-		<string>/Applications/fman.app/Contents/SharedSupport/bin/fman</string>
+		<string>/Applications/ForkLift.app/Contents/MacOS/Forklift</string>
 	</dict>
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>1.1.1</string>
+	<string>2.0.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/Acidham/search-alfred-workflows</string>
 </dict>
