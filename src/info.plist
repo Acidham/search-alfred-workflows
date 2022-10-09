@@ -358,6 +358,10 @@ end run</string>
 			<dict>
 				<key>delimiter</key>
 				<string>|</string>
+				<key>discardemptyarguments</key>
+				<false/>
+				<key>outputas</key>
+				<integer>0</integer>
 				<key>trimarguments</key>
 				<true/>
 				<key>variableprefix</key>
@@ -611,6 +615,10 @@ end run</string>
 			<dict>
 				<key>delimiter</key>
 				<string>|</string>
+				<key>discardemptyarguments</key>
+				<false/>
+				<key>outputas</key>
+				<integer>0</integer>
 				<key>trimarguments</key>
 				<true/>
 				<key>variableprefix</key>
@@ -797,6 +805,8 @@ end run</string>
 				</array>
 				<key>elselabel</key>
 				<string>else</string>
+				<key>hideelse</key>
+				<false/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.utility.conditional</string>
@@ -929,8 +939,8 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 ## Options
 
 * ENTER - Shows a list of keywords in the workflow and starts the workflow with a keyword
-* SHIFT - Shows a workflow description and associated keywords 
-* CMD - For addtional Actions: 
+* SHIFT - Shows a workflow description and associated keywords
+* CMD - For addtional Actions:
   * Copy path to Clipboard
   * Open WF Folder in Terminal (cd &lt;path&gt;)
   * Reveal in Finder
@@ -951,9 +961,9 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>colorindex</key>
 			<integer>7</integer>
 			<key>xpos</key>
-			<integer>955</integer>
+			<real>955</real>
 			<key>ypos</key>
-			<integer>595</integer>
+			<real>595</real>
 		</dict>
 		<key>08A82670-9DF2-4DDD-844F-115438000923</key>
 		<dict>
@@ -962,41 +972,41 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>note</key>
 			<string>Split query-input into value: item[n]</string>
 			<key>xpos</key>
-			<integer>250</integer>
+			<real>250</real>
 			<key>ypos</key>
-			<integer>95</integer>
+			<real>95</real>
 		</dict>
 		<key>0AAAF71A-C9BB-4A0F-9458-42BBE41E94FB</key>
 		<dict>
 			<key>xpos</key>
-			<integer>955</integer>
+			<real>955</real>
 			<key>ypos</key>
-			<integer>455</integer>
+			<real>455</real>
 		</dict>
 		<key>124DA868-B3A5-4FD5-B10E-DAE49F82D3DF</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>2</integer>
 			<key>xpos</key>
-			<integer>20</integer>
+			<real>30</real>
 			<key>ypos</key>
-			<integer>165</integer>
+			<real>165</real>
 		</dict>
 		<key>241E4426-A689-4820-B949-A0BFC59150B6</key>
 		<dict>
 			<key>note</key>
 			<string>Load plist_path</string>
 			<key>xpos</key>
-			<integer>875</integer>
+			<real>875</real>
 			<key>ypos</key>
-			<integer>485</integer>
+			<real>485</real>
 		</dict>
 		<key>243D7170-5509-458C-A42F-5766F7A4FB26</key>
 		<dict>
 			<key>xpos</key>
-			<integer>960</integer>
+			<real>960</real>
 			<key>ypos</key>
-			<integer>900</integer>
+			<real>900</real>
 		</dict>
 		<key>587395A1-C351-4946-8931-31EB74F5EE33</key>
 		<dict>
@@ -1005,18 +1015,18 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>note</key>
 			<string>Open in Alfred Preferences</string>
 			<key>xpos</key>
-			<integer>955</integer>
+			<real>955</real>
 			<key>ypos</key>
-			<integer>295</integer>
+			<real>295</real>
 		</dict>
 		<key>5A7C603B-46BD-474B-BFAD-BF7F9AFEDBC9</key>
 		<dict>
 			<key>note</key>
 			<string>Load wf_name</string>
 			<key>xpos</key>
-			<integer>875</integer>
+			<real>875</real>
 			<key>ypos</key>
-			<integer>325</integer>
+			<real>325</real>
 		</dict>
 		<key>5B166927-5D09-4B01-8E06-679862FDBEDC</key>
 		<dict>
@@ -1025,9 +1035,9 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>note</key>
 			<string>Reveal in file manager</string>
 			<key>xpos</key>
-			<integer>390</integer>
+			<real>390</real>
 			<key>ypos</key>
-			<integer>835</integer>
+			<real>835</real>
 		</dict>
 		<key>712FA7F8-179D-4CE2-9EB2-457F3DD4CCCD</key>
 		<dict>
@@ -1036,27 +1046,27 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>note</key>
 			<string>Split query-input into value: item[n]</string>
 			<key>xpos</key>
-			<integer>245</integer>
+			<real>245</real>
 			<key>ypos</key>
-			<integer>310</integer>
+			<real>310</real>
 		</dict>
 		<key>8A1D4D84-64B9-48D7-947D-48631A2697C0</key>
 		<dict>
 			<key>note</key>
 			<string>Load plist_path</string>
 			<key>xpos</key>
-			<integer>875</integer>
+			<real>875</real>
 			<key>ypos</key>
-			<integer>795</integer>
+			<real>795</real>
 		</dict>
 		<key>8A997CBF-B390-43F9-85C0-8876B512CB6B</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>2</integer>
 			<key>xpos</key>
-			<integer>465</integer>
+			<real>465</real>
 			<key>ypos</key>
-			<integer>65</integer>
+			<real>65</real>
 		</dict>
 		<key>91ADF58A-F5BD-4A93-B4D7-5CED80686979</key>
 		<dict>
@@ -1065,9 +1075,9 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>740</integer>
+			<real>740</real>
 			<key>ypos</key>
-			<integer>160</integer>
+			<real>160</real>
 		</dict>
 		<key>98B322BB-3950-407D-8BCE-71C24471C9F3</key>
 		<dict>
@@ -1076,41 +1086,41 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>note</key>
 			<string>Applescript handling Alfred WF UI</string>
 			<key>xpos</key>
-			<integer>955</integer>
+			<real>955</real>
 			<key>ypos</key>
-			<integer>65</integer>
+			<real>65</real>
 		</dict>
 		<key>9A3CC965-8254-49CE-A119-C7E092149207</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1150</integer>
+			<real>1150</real>
 			<key>ypos</key>
-			<integer>455</integer>
+			<real>455</real>
 		</dict>
 		<key>9D01F139-B2F1-484A-9B6C-68466EE79AFB</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>2</integer>
 			<key>xpos</key>
-			<integer>460</integer>
+			<real>460</real>
 			<key>ypos</key>
-			<integer>280</integer>
+			<real>280</real>
 		</dict>
 		<key>B6460CEC-FE31-4666-960A-A2C1FEED77FC</key>
 		<dict>
 			<key>xpos</key>
-			<integer>955</integer>
+			<real>955</real>
 			<key>ypos</key>
-			<integer>765</integer>
+			<real>765</real>
 		</dict>
 		<key>CA1E55B1-E8F6-4F74-8A3C-C0F84C373A93</key>
 		<dict>
 			<key>note</key>
 			<string>Load plist_path</string>
 			<key>xpos</key>
-			<integer>875</integer>
+			<real>875</real>
 			<key>ypos</key>
-			<integer>625</integer>
+			<real>625</real>
 		</dict>
 		<key>D08C4D47-3E99-474A-B2BE-3956D2108AD3</key>
 		<dict>
@@ -1119,47 +1129,82 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>note</key>
 			<string>set plist_path and wf_item</string>
 			<key>xpos</key>
-			<integer>360</integer>
+			<real>360</real>
 			<key>ypos</key>
-			<integer>95</integer>
+			<real>95</real>
 		</dict>
 		<key>F08DA5A1-5F16-44A5-BFF5-D51BEECFBA2A</key>
 		<dict>
 			<key>xpos</key>
-			<integer>630</integer>
+			<real>630</real>
 			<key>ypos</key>
-			<integer>570</integer>
+			<real>570</real>
 		</dict>
 		<key>FB99F2B1-4488-4028-BF89-91A9D3B28DD4</key>
 		<dict>
 			<key>note</key>
 			<string>Load plist_path</string>
 			<key>xpos</key>
-			<integer>875</integer>
+			<real>875</real>
 			<key>ypos</key>
-			<integer>930</integer>
+			<real>930</real>
 		</dict>
 		<key>FE10FC76-4C1E-4EEA-83F3-5850915CA150</key>
 		<dict>
 			<key>note</key>
 			<string>set plist_path and wf_name</string>
 			<key>xpos</key>
-			<integer>355</integer>
+			<real>355</real>
 			<key>ypos</key>
-			<integer>310</integer>
+			<real>310</real>
 		</dict>
 	</dict>
-	<key>variables</key>
-	<dict>
-		<key>exclude_disabled</key>
-		<string>true</string>
-		<key>file_manager</key>
-		<string>/Applications/ForkLift.app/Contents/MacOS/Forklift</string>
-	</dict>
-	<key>variablesdontexport</key>
-	<array/>
+	<key>userconfigurationconfig</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string></string>
+				<key>filtermode</key>
+				<integer>2</integer>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<false/>
+			</dict>
+			<key>description</key>
+			<string>Path to executable file manager, if applicable.
+Example: /Applications/ForkLift.app/Contents/MacOS/Forklift</string>
+			<key>label</key>
+			<string>File Manager</string>
+			<key>type</key>
+			<string>filepicker</string>
+			<key>variable</key>
+			<string>file_manager</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<true/>
+				<key>required</key>
+				<false/>
+				<key>text</key>
+				<string>Ignore disabled workflow in search</string>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>Exclude Disabled</string>
+			<key>type</key>
+			<string>checkbox</string>
+			<key>variable</key>
+			<string>exclude_disabled</string>
+		</dict>
+	</array>
 	<key>version</key>
-	<string>2.0.0</string>
+	<string>2.1.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/Acidham/search-alfred-workflows</string>
 </dict>

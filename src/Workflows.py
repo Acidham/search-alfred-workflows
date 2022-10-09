@@ -48,7 +48,7 @@ class Workflows(object):
         """
         self.wf_directory = Tools.getEnv('alfred_preferences') + "/workflows"
         exclude_disabled = Tools.getEnv('exclude_disabled').lower()
-        self.exclude_disabled = True if exclude_disabled == "true" else False
+        self.exclude_disabled = True if exclude_disabled == "1" else False
         self.workflows = self._get_workflows_list()
 
     def get_workflows(self, reverse=False):
