@@ -248,7 +248,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>243D7170-5509-458C-A42F-5766F7A4FB26</string>
+				<string>5B166927-5D09-4B01-8E06-679862FDBEDC</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -593,7 +593,7 @@ fi</string>
 				<key>script</key>
 				<string>on run argv
 	set theQuery to item 1 of argv
-	tell application "Alfred 4"		search "?" &amp; theQuery	end tell
+	tell application id "com.runningwithcrayons.Alfred"		search "?" &amp; theQuery	end tell
 	tell application "System Events" to key code 36
 end run</string>
 				<key>scriptargtype</key>
@@ -901,21 +901,6 @@ end run</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>openwith</key>
-				<string>/System/Volumes/Data/Applications/ForkLift.app</string>
-				<key>sourcefile</key>
-				<string></string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.openfile</string>
-			<key>uid</key>
-			<string>243D7170-5509-458C-A42F-5766F7A4FB26</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argument</key>
 				<string>{var:plist_path}</string>
 				<key>passthroughargument</key>
@@ -1001,13 +986,6 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>ypos</key>
 			<real>485</real>
 		</dict>
-		<key>243D7170-5509-458C-A42F-5766F7A4FB26</key>
-		<dict>
-			<key>xpos</key>
-			<real>960</real>
-			<key>ypos</key>
-			<real>900</real>
-		</dict>
 		<key>587395A1-C351-4946-8931-31EB74F5EE33</key>
 		<dict>
 			<key>colorindex</key>
@@ -1035,9 +1013,9 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>note</key>
 			<string>Reveal in file manager</string>
 			<key>xpos</key>
-			<real>390</real>
+			<real>960</real>
 			<key>ypos</key>
-			<real>835</real>
+			<real>900</real>
 		</dict>
 		<key>712FA7F8-179D-4CE2-9EB2-457F3DD4CCCD</key>
 		<dict>
@@ -1203,8 +1181,10 @@ Example: /Applications/ForkLift.app/Contents/MacOS/Forklift</string>
 			<string>exclude_disabled</string>
 		</dict>
 	</array>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
-	<string>2.1.0</string>
+	<string>2.1.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/Acidham/search-alfred-workflows</string>
 </dict>
