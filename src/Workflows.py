@@ -23,25 +23,25 @@ class Workflows(object):
     OPTION = u"\u2325"
     FN = "fn"
 
-    HOTMOD = {	131072: SHIFT,
-               262144: CONTROL,
-               262401: CONTROL,
-               393216: SHIFT+CONTROL,
-               524288: OPTION,
-               655360: SHIFT+OPTION,
-               786432: CONTROL+OPTION,
-               917504: SHIFT+CONTROL+OPTION,
-               1048576: COMMAND,
-               1179648: SHIFT+COMMAND,
-               1310720: CONTROL+COMMAND,
-               1310985: CONTROL+COMMAND,
-               1441792: SHIFT+CONTROL+COMMAND,
-               1572864: OPTION+COMMAND,
-               1703936: SHIFT+OPTION+COMMAND,
-               1835008: CONTROL+OPTION+COMMAND,
-               1966080: SHIFT+CONTROL+OPTION+COMMAND,
-               8388608: FN
-               }
+    HOTMOD = {131072: SHIFT,
+              262144: CONTROL,
+              262401: CONTROL,
+              393216: SHIFT+CONTROL,
+              524288: OPTION,
+              655360: SHIFT+OPTION,
+              786432: CONTROL+OPTION,
+              917504: SHIFT+CONTROL+OPTION,
+              1048576: COMMAND,
+              1179648: SHIFT+COMMAND,
+              1310720: CONTROL+COMMAND,
+              1310985: CONTROL+COMMAND,
+              1441792: SHIFT+CONTROL+COMMAND,
+              1572864: OPTION+COMMAND,
+              1703936: SHIFT+OPTION+COMMAND,
+              1835008: CONTROL+OPTION+COMMAND,
+              1966080: SHIFT+CONTROL+OPTION+COMMAND,
+              8388608: FN
+              }
 
     def __init__(self):
         """Workflow data represenative
@@ -108,6 +108,7 @@ class Workflows(object):
             plist_info = self._get_plist_info(plist_path)
             name = plist_info.get('name')
             desc = plist_info.get('description')
+            uidata = plist_info.get('uidata')
             item_objects = plist_info.get('objects')
             keyword_list = list()
             keyb_list = list()
@@ -116,6 +117,8 @@ class Workflows(object):
                 key_shortcut = str()
                 # Get list of keyboard shortcuts
                 if item_type == 'alfred.workflow.trigger.hotkey':
+                    uid = o.get('uid')
+                    note = uidata.get(uid).get('note')
                     item_config = o.get('config')
                     hm = item_config.get('hotmod')
                     if hm in self.HOTMOD:
@@ -129,7 +132,8 @@ class Workflows(object):
                     key_shortcut = u'{0} {1}'.format(
                         hotmod, hotstring) if hotmod or hotstring else None
                     keyb_list.append({
-                        'keyb': key_shortcut
+                        'keyb': key_shortcut,
+                        'note': note
                     })
                 # Get list of keywords
                 if item_type in self.INPUT_TYPES:

@@ -92,7 +92,7 @@ class KeywordFormatter(object):
         formatted_keyb = list()
         result = str()
         for k in self.get_keyboard_shortcuts():
-            formatted_keyb.append(f"*{k}")
+            formatted_keyb.append(f"* {k}\n")
         for fk in formatted_keyb:
             result += f"{fk}\n"
         return result if len(self.keyb_shortcuts) > 0 else None
@@ -116,7 +116,7 @@ def get_cache_directory() -> str:
         str: Cache Directory
     """
     target_dir = Tools.getEnv('alfred_workflow_cache')
-    if not(os.path.isdir(target_dir)):
+    if not (os.path.isdir(target_dir)):
         os.mkdir(target_dir)
     return target_dir
 
@@ -161,7 +161,9 @@ if len(matches) > 0:
         # Read WF keyboard shortcuts
         keyb_list = m.get('keyb')
         for k in keyb_list:
-            kf.add_keyb(k.get('keyb'))
+            note = k.get('note')
+            keyb = k.get('keyb')
+            kf.add_keyb(f'{keyb} : {note}')
         # Get list of keywords
         keyword_list = m.get('keywords')
         info_plist_path = m.get('path')
