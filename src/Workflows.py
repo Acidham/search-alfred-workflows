@@ -40,7 +40,9 @@ class Workflows(object):
               1703936: SHIFT+OPTION+COMMAND,
               1835008: CONTROL+OPTION+COMMAND,
               1966080: SHIFT+CONTROL+OPTION+COMMAND,
-              8388608: FN
+              8388608: FN,
+              8519680: SHIFT,
+              11272192: CONTROL+OPTION
               }
 
     def __init__(self):

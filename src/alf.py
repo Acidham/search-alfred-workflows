@@ -198,8 +198,8 @@ if len(matches) > 0:
         subtitle = description + \
             u', Keywords: ' + \
             keyword_text if valid else description
-        if len(kf.get_keyboard_shortcuts()) > 0:
-            subtitle += ", Keyboard: " + ",".join(kf.get_keyboard_shortcuts())
+        # if len(kf.get_keyboard_shortcuts()) > 0:
+        #    subtitle += ", Keyboard: " + ",".join(kf.get_keyboard_shortcuts())
         arg = os.path.dirname(info_plist_path) + "|" + name
         alf.setItem(
             title=name,

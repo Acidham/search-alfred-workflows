@@ -70,6 +70,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>3749400F-A6EC-4C19-8DA7-05CC8ADEDE1A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>124DA868-B3A5-4FD5-B10E-DAE49F82D3DF</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>5A7C603B-46BD-474B-BFAD-BF7F9AFEDBC9</key>
 		<array>
 			<dict>
@@ -562,6 +575,37 @@ end run</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>44</integer>
+				<key>hotmod</key>
+				<integer>1179648</integer>
+				<key>hotstring</key>
+				<string>/</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>3749400F-A6EC-4C19-8DA7-05CC8ADEDE1A</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
@@ -874,6 +918,15 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<real>875</real>
 			<key>ypos</key>
 			<real>485</real>
+		</dict>
+		<key>3749400F-A6EC-4C19-8DA7-05CC8ADEDE1A</key>
+		<dict>
+			<key>note</key>
+			<string>Alfred Search</string>
+			<key>xpos</key>
+			<real>30</real>
+			<key>ypos</key>
+			<real>410</real>
 		</dict>
 		<key>587395A1-C351-4946-8931-31EB74F5EE33</key>
 		<dict>
