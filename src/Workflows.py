@@ -125,7 +125,7 @@ class Workflows(object):
                     hm = item_config.get('hotmod')
                     if hm in self.HOTMOD:
                         hotmod = self.HOTMOD.get(hm)
-                    elif hm and hm > 0:
+                    elif hm > 0:
                         sys.stderr.write(f"Hotmod: {str(hm)} not found in: {plist_path}")
                         hotmod = str()
                     else:
@@ -162,8 +162,8 @@ class Workflows(object):
                     'keywords': keyword_list,
                     'keyb': keyb_list
                 }
-        except Exception as e:
-            sys.stderr.write(f"Error: {e} ({name};{plist_path})\n")
+        except:
+            sys.stderr.write(f"Corrupt Workflow found, path: {plist_path}")
             return None
 
     def _get_workflows_list(self):
