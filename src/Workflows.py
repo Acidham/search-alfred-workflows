@@ -112,6 +112,7 @@ class Workflows(object):
             desc = plist_info.get('description')
             uidata = plist_info.get('uidata')
             item_objects = plist_info.get('objects')
+            user_config = plist_info.get('userconfigurationconfig')
             keyword_list = list()
             keyb_list = list()
             for o in item_objects:
@@ -125,8 +126,9 @@ class Workflows(object):
                     hm = item_config.get('hotmod')
                     if hm in self.HOTMOD:
                         hotmod = self.HOTMOD.get(hm)
-                    elif hm > 0:
-                        sys.stderr.write(f"Hotmod: {str(hm)} not found in: {plist_path}")
+                    elif hm and hm > 0:
+                        sys.stderr.write(
+                            f"Hotmod: {str(hm)} not found in: {plist_path}")
                         hotmod = str()
                     else:
                         hotmod = str()
@@ -141,6 +143,13 @@ class Workflows(object):
                 if item_type in self.INPUT_TYPES:
                     item_config = o.get('config')
                     keyword = item_config.get('keyword')
+
+                    if keyword and "var:" in keyword:
+                        variable = keyword.replace("var:", "").replace(
+                            "{", "").replace("}", "")
+                        keyword = self._get_user_config_variable(
+                            user_config, variable)
+
                     title = item_config.get('title')
                     text = item_config.get('text')
                     title = title if title else text
@@ -162,9 +171,30 @@ class Workflows(object):
                     'keywords': keyword_list,
                     'keyb': keyb_list
                 }
-        except:
-            sys.stderr.write(f"Corrupt Workflow found, path: {plist_path}")
+        except Exception as e:
+            sys.stderr.write(f"Error: {e} ({name};{plist_path})\n")
             return None
+
+    def _get_user_config_variable(self, user_config, variable):
+        """
+        extract user config variable from workflow
+
+        Args:
+
+            user_config (dict): user config
+            variable (str): variable to search for
+
+        Returns:
+
+            str: variable value
+
+        """
+        ret = str()
+        for i in user_config:
+            config = i.get('config')
+            if i.get('variable') == variable:
+                ret = config.get('default', "")
+        return ret
 
     def _get_workflows_list(self):
         """Get list of workflows, with content
