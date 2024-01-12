@@ -143,13 +143,12 @@ class Workflows(object):
                 if item_type in self.INPUT_TYPES:
                     item_config = o.get('config')
                     keyword = item_config.get('keyword')
-
+                    # Get keyword when using env variables
                     if keyword and "var:" in keyword:
                         variable = keyword.replace("var:", "").replace(
                             "{", "").replace("}", "")
                         keyword = self._get_user_config_variable(
                             user_config, variable)
-
                     title = item_config.get('title')
                     text = item_config.get('text')
                     title = title if title else text
@@ -172,7 +171,10 @@ class Workflows(object):
                     'keyb': keyb_list
                 }
         except Exception as e:
-            sys.stderr.write(f"Error: {e} ({name};{plist_path})\n")
+            if 'name' in locals():
+                sys.stderr.write(f"Error: {e} ({name};{plist_path})\n")
+            else:
+                sys.stderr.write(f"Error: {e} ({plist_path})\n")
             return None
 
     def _get_user_config_variable(self, user_config, variable):
