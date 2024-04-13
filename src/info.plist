@@ -52,9 +52,22 @@
 				<key>modifiers</key>
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
-				<string>Choose Action....</string>
+				<string>Choose Action...</string>
 				<key>vitoclose</key>
 				<true/>
+			</dict>
+		</array>
+		<key>1CE8B8F4-B217-4464-95F9-EF6C809A1E9A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FD935BE3-F311-4035-B706-36DE71E49646</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>241E4426-A689-4820-B949-A0BFC59150B6</key>
@@ -101,6 +114,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>FE10FC76-4C1E-4EEA-83F3-5850915CA150</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>7C790798-A120-4A22-81AE-EE39A560FA9E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>9D01F139-B2F1-484A-9B6C-68466EE79AFB</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -226,6 +252,30 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
+				<string>810521F2-F674-4946-B05B-A967CE388124</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>1EEA0A32-9A7E-4878-9AB4-0710082D05A1</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>5F4C1580-8DAD-4D64-BBAF-6054184628CA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>89C1BB28-8680-4F43-9155-2B4A844CA2DC</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
 				<string>FB99F2B1-4488-4028-BF89-91A9D3B28DD4</string>
 				<key>modifiers</key>
 				<integer>0</integer>
@@ -250,11 +300,24 @@
 				<false/>
 			</dict>
 		</array>
+		<key>FD935BE3-F311-4035-B706-36DE71E49646</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>7C790798-A120-4A22-81AE-EE39A560FA9E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>FE10FC76-4C1E-4EEA-83F3-5850915CA150</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>9D01F139-B2F1-484A-9B6C-68466EE79AFB</string>
+				<string>1CE8B8F4-B217-4464-95F9-EF6C809A1E9A</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -441,6 +504,61 @@ end run</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string># Split string into lines
+split_string() {
+    echo "$1" | tr '\n' '\0' | xargs -0 -n1 echo
+}
+
+# Filter lines on &lt;string&gt; tags, pick the first one, return the enclosed string
+get_bundleid() {
+    local lines=("${(@f)1}")
+    local filtered_lines=()
+    for line in $lines; do
+        if [[ $line == *"&lt;string&gt;"* ]] &amp;&amp; [[ $line == *"&lt;/string&gt;"* ]]; then
+            filtered_lines+=("$line")
+        fi
+    done
+	local uid_line="${filtered_lines[1]}"
+	echo "${${uid_line#*&lt;string&gt;}%&lt;/string&gt;*}"
+}
+
+readonly dirpath="$plist_path"
+readonly actual_plist_path="${dirpath}/info.plist"
+readonly plist=$(&lt;"$actual_plist_path")
+readonly workflow_bundleid=$(get_bundleid "$plist")
+
+readonly cache_path="$HOME/Library/Caches/com.runningwithcrayons.Alfred/Workflow Data/$workflow_bundleid"
+readonly data_path="$HOME/Library/Application Support/Alfred/Workflow Data/$workflow_bundleid"
+
+cache_exists="false"
+data_exists="false"
+
+[[ -d $cache_path ]] &amp;&amp; cache_exists="true"
+[[ -d $data_path ]] &amp;&amp; data_exists="true"
+
+echo -n "${workflow_bundleid},${cache_exists},${data_exists}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>11</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>1CE8B8F4-B217-4464-95F9-EF6C809A1E9A</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -515,6 +633,52 @@ end run</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict>
+					<key>plist_path</key>
+					<string>{var:item1}</string>
+					<key>wf_name</key>
+					<string>{var:item2}</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>FE10FC76-4C1E-4EEA-83F3-5850915CA150</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict>
+					<key>bundleid</key>
+					<string>{var:split1}</string>
+					<key>cache_exists</key>
+					<string>{var:split2}</string>
+					<key>data_exists</key>
+					<string>{var:split3}</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>7C790798-A120-4A22-81AE-EE39A560FA9E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>delimiter</key>
 				<string>|</string>
 				<key>discardemptyarguments</key>
@@ -536,22 +700,21 @@ end run</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argument</key>
-				<string></string>
-				<key>passthroughargument</key>
+				<key>delimiter</key>
+				<string>,</string>
+				<key>discardemptyarguments</key>
 				<false/>
-				<key>variables</key>
-				<dict>
-					<key>plist_path</key>
-					<string>{var:item1}</string>
-					<key>wf_name</key>
-					<string>{var:item2}</string>
-				</dict>
+				<key>outputas</key>
+				<integer>0</integer>
+				<key>trimarguments</key>
+				<true/>
+				<key>variableprefix</key>
+				<string>split</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
+			<string>alfred.workflow.utility.split</string>
 			<key>uid</key>
-			<string>FE10FC76-4C1E-4EEA-83F3-5850915CA150</string>
+			<string>FD935BE3-F311-4035-B706-36DE71E49646</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -584,11 +747,9 @@ end run</string>
 				<key>focusedappvariablename</key>
 				<string></string>
 				<key>hotkey</key>
-				<integer>44</integer>
+				<integer>0</integer>
 				<key>hotmod</key>
-				<integer>1179648</integer>
-				<key>hotstring</key>
-				<string>/</string>
+				<integer>0</integer>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -729,6 +890,34 @@ end run</string>
 						<key>matchmode</key>
 						<integer>0</integer>
 						<key>matchstring</key>
+						<string>cache</string>
+						<key>outputlabel</key>
+						<string>cache</string>
+						<key>uid</key>
+						<string>1EEA0A32-9A7E-4878-9AB4-0710082D05A1</string>
+					</dict>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>data</string>
+						<key>outputlabel</key>
+						<string>data</string>
+						<key>uid</key>
+						<string>89C1BB28-8680-4F43-9155-2B4A844CA2DC</string>
+					</dict>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
 						<string>file_manager</string>
 						<key>outputlabel</key>
 						<string>file_manager</string>
@@ -739,7 +928,7 @@ end run</string>
 				<key>elselabel</key>
 				<string>else</string>
 				<key>hideelse</key>
-				<false/>
+				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.utility.conditional</string>
@@ -816,6 +1005,52 @@ end run</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
+				<string>open "$HOME/Library/Caches/com.runningwithcrayons.Alfred/Workflow Data/$bundleid"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>11</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>810521F2-F674-4946-B05B-A967CE388124</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>open "$HOME/Library/Application Support/Alfred/Workflow Data/$bundleid"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>11</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>5F4C1580-8DAD-4D64-BBAF-6054184628CA</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
 				<string>$file_manager "$1"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
@@ -879,7 +1114,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>colorindex</key>
 			<integer>7</integer>
 			<key>xpos</key>
-			<real>955</real>
+			<real>1320</real>
 			<key>ypos</key>
 			<real>595</real>
 		</dict>
@@ -897,7 +1132,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 		<key>0AAAF71A-C9BB-4A0F-9458-42BBE41E94FB</key>
 		<dict>
 			<key>xpos</key>
-			<real>955</real>
+			<real>1320</real>
 			<key>ypos</key>
 			<real>455</real>
 		</dict>
@@ -910,12 +1145,22 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>ypos</key>
 			<real>165</real>
 		</dict>
+		<key>1CE8B8F4-B217-4464-95F9-EF6C809A1E9A</key>
+		<dict>
+			<key>note</key>
+			<string>Get Workflow bundle id
+and check if cache or data folder exist</string>
+			<key>xpos</key>
+			<real>445</real>
+			<key>ypos</key>
+			<real>280</real>
+		</dict>
 		<key>241E4426-A689-4820-B949-A0BFC59150B6</key>
 		<dict>
 			<key>note</key>
 			<string>Load plist_path</string>
 			<key>xpos</key>
-			<real>875</real>
+			<real>1240</real>
 			<key>ypos</key>
 			<real>485</real>
 		</dict>
@@ -935,7 +1180,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>note</key>
 			<string>Open in Alfred Preferences</string>
 			<key>xpos</key>
-			<real>955</real>
+			<real>1320</real>
 			<key>ypos</key>
 			<real>295</real>
 		</dict>
@@ -944,7 +1189,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>note</key>
 			<string>Load wf_name</string>
 			<key>xpos</key>
-			<real>875</real>
+			<real>1240</real>
 			<key>ypos</key>
 			<real>325</real>
 		</dict>
@@ -955,9 +1200,18 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>note</key>
 			<string>Reveal in file manager</string>
 			<key>xpos</key>
-			<real>960</real>
+			<real>1320</real>
 			<key>ypos</key>
-			<real>900</real>
+			<real>1135</real>
+		</dict>
+		<key>5F4C1580-8DAD-4D64-BBAF-6054184628CA</key>
+		<dict>
+			<key>note</key>
+			<string>Open data folder</string>
+			<key>xpos</key>
+			<real>1320</real>
+			<key>ypos</key>
+			<real>990</real>
 		</dict>
 		<key>712FA7F8-179D-4CE2-9EB2-457F3DD4CCCD</key>
 		<dict>
@@ -970,21 +1224,39 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>ypos</key>
 			<real>310</real>
 		</dict>
+		<key>7C790798-A120-4A22-81AE-EE39A560FA9E</key>
+		<dict>
+			<key>note</key>
+			<string>set bundleid, cache, and data hints</string>
+			<key>xpos</key>
+			<real>725</real>
+			<key>ypos</key>
+			<real>310</real>
+		</dict>
+		<key>810521F2-F674-4946-B05B-A967CE388124</key>
+		<dict>
+			<key>note</key>
+			<string>Open cache folder</string>
+			<key>xpos</key>
+			<real>1320</real>
+			<key>ypos</key>
+			<real>855</real>
+		</dict>
 		<key>8A1D4D84-64B9-48D7-947D-48631A2697C0</key>
 		<dict>
 			<key>note</key>
 			<string>Load plist_path</string>
 			<key>xpos</key>
-			<real>875</real>
+			<real>1240</real>
 			<key>ypos</key>
-			<real>795</real>
+			<real>760</real>
 		</dict>
 		<key>8A997CBF-B390-43F9-85C0-8876B512CB6B</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>2</integer>
 			<key>xpos</key>
-			<real>465</real>
+			<real>815</real>
 			<key>ypos</key>
 			<real>65</real>
 		</dict>
@@ -995,14 +1267,14 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>note</key>
 			<string>Applescript handling Alfred WF UI</string>
 			<key>xpos</key>
-			<real>955</real>
+			<real>1320</real>
 			<key>ypos</key>
 			<real>65</real>
 		</dict>
 		<key>9A3CC965-8254-49CE-A119-C7E092149207</key>
 		<dict>
 			<key>xpos</key>
-			<real>1150</real>
+			<real>1515</real>
 			<key>ypos</key>
 			<real>455</real>
 		</dict>
@@ -1011,23 +1283,23 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>colorindex</key>
 			<integer>2</integer>
 			<key>xpos</key>
-			<real>460</real>
+			<real>810</real>
 			<key>ypos</key>
 			<real>280</real>
 		</dict>
 		<key>B6460CEC-FE31-4666-960A-A2C1FEED77FC</key>
 		<dict>
 			<key>xpos</key>
-			<real>955</real>
+			<real>1320</real>
 			<key>ypos</key>
-			<real>765</real>
+			<real>730</real>
 		</dict>
 		<key>CA1E55B1-E8F6-4F74-8A3C-C0F84C373A93</key>
 		<dict>
 			<key>note</key>
 			<string>Load plist_path</string>
 			<key>xpos</key>
-			<real>875</real>
+			<real>1240</real>
 			<key>ypos</key>
 			<real>625</real>
 		</dict>
@@ -1045,7 +1317,7 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 		<key>F08DA5A1-5F16-44A5-BFF5-D51BEECFBA2A</key>
 		<dict>
 			<key>xpos</key>
-			<real>630</real>
+			<real>995</real>
 			<key>ypos</key>
 			<real>570</real>
 		</dict>
@@ -1054,16 +1326,28 @@ Alfred Workflows help to search in Title, Keyword, Description of a workflow and
 			<key>note</key>
 			<string>Load plist_path</string>
 			<key>xpos</key>
-			<real>875</real>
+			<real>1240</real>
 			<key>ypos</key>
-			<real>930</real>
+			<real>1165</real>
+		</dict>
+		<key>FD935BE3-F311-4035-B706-36DE71E49646</key>
+		<dict>
+			<key>note</key>
+			<string>Split
+- bundle id
+- cache exists
+- data exists</string>
+			<key>xpos</key>
+			<real>610</real>
+			<key>ypos</key>
+			<real>310</real>
 		</dict>
 		<key>FE10FC76-4C1E-4EEA-83F3-5850915CA150</key>
 		<dict>
 			<key>note</key>
 			<string>set plist_path and wf_name</string>
 			<key>xpos</key>
-			<real>355</real>
+			<real>360</real>
 			<key>ypos</key>
 			<real>310</real>
 		</dict>
@@ -1112,10 +1396,8 @@ Example: /Applications/ForkLift.app/Contents/MacOS/Forklift</string>
 			<string>exclude_disabled</string>
 		</dict>
 	</array>
-	<key>variablesdontexport</key>
-	<array/>
 	<key>version</key>
-	<string>2.3.6</string>
+	<string>2.4.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/Acidham/search-alfred-workflows</string>
 </dict>

@@ -9,8 +9,17 @@ wf_items = [
     ['Open Workflow', 'Open Workflow in Alfred Preferences', 'open'],
     ['Path to Clipboard', 'Copy Workflow path to Clipoard', 'clipboard'],
     ['Open in Terminal', 'Open Workflow path in Terminal', 'terminal'],
-    ['Finder', 'Reveal in Finder', 'finder'],
+    ['Reveal', 'Reveal Workflow in Finder', 'finder'],
 ]
+
+cache_exists = os.getenv("cache_exists") 
+data_exists = os.getenv("data_exists")   
+
+if cache_exists == "true":
+    wf_items.append(['Open cache directory', 'Open Workflow cache in Finder', 'cache'])
+
+if data_exists == "true": 
+    wf_items.append(['Open data directory', 'Open Workflow data in Finder', 'data'])
 
 # Add file manager defined in Alfred wf env
 file_manager_path = Tools.getEnv('file_manager')
