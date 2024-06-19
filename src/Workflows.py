@@ -147,8 +147,16 @@ class Workflows(object):
                     if keyword and "var:" in keyword:
                         variable = keyword.replace("var:", "").replace(
                             "{", "").replace("}", "")
-                        keyword = self._get_user_config_variable(
-                            user_config, variable)
+                        # build path to prefs.plist
+                        prefs_path = plist_path.replace(
+                            "info.plist", "prefs.plist")
+                        # load prefs.plist
+                        prefs = self._get_plist_info(prefs_path)
+                        keyword = prefs.get(variable)
+                        # if keyword is not being found in prefs.plist then use default value
+                        if not (keyword):
+                            keyword = self._get_user_config_variable(
+                                user_config, variable)
                     title = item_config.get('title')
                     text = item_config.get('text')
                     title = title if title else text
@@ -194,7 +202,7 @@ class Workflows(object):
         ret = str()
         for i in user_config:
             config = i.get('config')
-            if i.get('variable') == variable:
+            if i.get('variable').lower() == variable.lower():
                 ret = config.get('default', "")
         return ret
 

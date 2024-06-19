@@ -1401,7 +1401,7 @@ Example: /Applications/ForkLift.app/Contents/MacOS/Forklift</string>
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2.3.8</string>
+	<string>2.4.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/Acidham/search-alfred-workflows</string>
 </dict>
