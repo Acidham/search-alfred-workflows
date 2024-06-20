@@ -151,8 +151,10 @@ class Workflows(object):
                         prefs_path = plist_path.replace(
                             "info.plist", "prefs.plist")
                         # load prefs.plist
-                        prefs = self._get_plist_info(prefs_path)
-                        keyword = prefs.get(variable)
+                        keyword = None
+                        if os.path.isfile(prefs_path):
+                            prefs = self._get_plist_info(prefs_path)
+                            keyword = prefs.get(variable)
                         # if keyword is not being found in prefs.plist then use default value
                         if not (keyword):
                             keyword = self._get_user_config_variable(
